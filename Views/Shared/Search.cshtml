@@ -1,0 +1,66 @@
+﻿@model web_project.Models.Staff
+<div class="row">
+    
+        <form >
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group" disabled style="width:100%">
+                        <label asp-for="EmpNo" class="control-label"></label>
+                        <input asp-for="EmpNo" class="form-control" />
+                        <span asp-validation-for="EmpNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Surname" class="control-label">Name</label>
+                        <input asp-for="Surname" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="padding-top:2em" >
+                        <input onclick="displayDate()" value="Search" class="btn btn-success" />
+                    </div>
+                </div>
+                </div>
+            </form>
+               
+    </div>
+        <div class="row">
+            <div class="col-md-9">
+
+
+                <p id="demo"></p>
+              
+            </div>
+            <hr />
+        </div>
+
+
+        <script>
+
+            function getEmployeeByCode() {
+               
+                $.ajax('/Staffs/Search', {
+                    type: 'GET',  
+                    data: { a: 1 }, 
+                    success: function (data, status, xhr) {
+                        var table = document.getElementById("myTable");
+                        var row = table.insertRow(0);
+                       
+                        $('p').append('status: ' + status + ', data: ' + data);
+                        $(table).find('tbody').append("<tr><td>aaaa</td><td>aaaa</td><td>aaaa</td></tr>");
+
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) {
+                        $('p').append('Error' + errorMessage);
+                    }
+                });
+                document.getElementById("demo").innerHTML = Date();
+            }
+        </script>
+
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

@@ -1,0 +1,100 @@
+﻿
+
+@model web_project.Models.User
+
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>Rakna Lanka</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+</head>
+<body class="landing">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><strong><a asp-action="Index" asp-controller="Home">HRIS</a></strong></h1>
+       
+        
+        <nav id="nav">
+            <ul>
+                @*<li><a asp-action="Index" asp-controller="Advertiesments">View </a></li>*@
+                @*<li><a asp-action="CreateUser" asp-controller="Users">Register</a></li>*@
+            </ul>
+        </nav>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    <!-- Banner -->
+    <section id="banner">
+
+
+        <form asp-action="UserRegister">
+            <div class="row uniform 150%" style="color:white">
+                <div class="3u 12u$(xsmall)">
+
+                </div>
+                <div class="6u$ 12u$(xsmall)">
+                    <div style="width:100%">
+                        <div class="form-group" ; padding-bottom:0.9em">
+                            <input asp-for="UserName" placeholder="User Name" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row uniform 150%" style="color:white ; padding-bottom:1em">
+                <div class="3u 12u$(xsmall)">
+                </div>
+                <div class="6u$ 12u$(xsmall)">
+                    <div style="width:100%">
+                        <div class="form-group" ; padding-top:0.3em">
+                            <input asp-for="Password" type="password" placeholder="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @{
+                if (AppManage.ErrorMsg.Length > 0)
+                {
+               
+                    <div class="row">
+                        <div class="12u$">
+
+                            <ul class="actions vertical small">
+                                <li><a href="#" class="button special small fit">Invalid LogIn</a></li>
+                            </ul>
+                            <p>
+
+
+                        </div>
+                    </div>
+                 }
+            }
+
+            <div class="row">
+                <div class="12u$">
+
+                    <ul class="actions">
+                        <li><input type="submit" asp-action="LogIn" asp-controller="Users" value="Log In" class="special" /></li>                      
+                    </ul>
+                    <p>
+
+                </div>
+            </div>
+        </form>
+
+
+    </section>
+
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/skel.min.js"></script>
+    <script src="~/assets/js/util.js"></script>
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>
+

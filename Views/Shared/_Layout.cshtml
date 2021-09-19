@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body { background-image: url('~/images/1.jpg'); }
+        .table th, .table td {
+            padding: 0.15rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Sport Management </title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body style="border-bottom:0em;padding-bottom:0em"  >
+ 
+            <header style="background-color: #004e64; color: white; padding-bottom: 0em" >
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+                    <div class="container">
+                        <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index"> <text>Home</text> </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                            <ul class="navbar-nav flex-grow-1" style="color:white">
+                                @{
+
+                                    <li class="nav-item">
+                                        <a style="color:white" class="nav-link " asp-controller="EnterAttendances" asp-action="Index"> Attendance</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color:white" class="nav-link " asp-controller="Staffs" asp-action="Index"> Staff</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color:white" class="nav-link " asp-controller="Deductions" asp-action="Index"> Deduction</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a style="color:white" class="nav-link " asp-controller="Deductions" asp-action="PendingDeductions"> Clearance</a>
+                                    </li>
+                                   
+
+                                   
+                                }
+
+                            </ul>
+
+                        </div>
+
+                        @{
+                            if (this.User.Identity.IsAuthenticated )
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="nav-item float-right">
+                                        <a style="color:white" class="nav-link " asp-area="" asp-controller="Users" asp-action="LogOut"> <div>Log out</div></a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="nav-item float-right">
+                                        <a class="nav-link " asp-area="" asp-controller="Users" asp-action="ViewLogIn"> <div>LogIn</div></a>
+                                    </li>
+                                </ul>
+                            }
+                        }
+
+                    </div>
+                </nav>
+            </header>
+            <div class="row" style="background-color:ghostwhite ; padding-top:0em">
+               
+                <div class="col-12" style="margin: 0em; padding: 0em; padding-left: 2em; padding-right: 2em">
+                    @RenderBody()
+
+                </div>
+              
+            </div>
+              
+                <environment include="Development">
+                    <script src="~/lib/jquery/dist/jquery.js"></script>
+                    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+                </environment>
+                <environment exclude="Development">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                            asp-fallback-test="window.jQuery"
+                            crossorigin="anonymous"
+                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+                    </script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                            crossorigin="anonymous"
+                            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+                    </script>
+                </environment>
+                <script src="~/js/site.js" asp-append-version="true"></script>
+
+                @RenderSection("Scripts", required: false)
+</body>
+</html>
