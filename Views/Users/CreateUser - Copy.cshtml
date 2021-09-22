@@ -1,0 +1,80 @@
+﻿@model web_project.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+
+
+
+
+    <!-- Header -->
+  
+        @*<h1><strong><a asp-controller="Home" asp-action="Index"></a></strong> </h1>
+        <nav id="nav">
+            <ul>
+                <li><a asp-controller="Advertiesments" asp-action="Create">New Advertisement</a></li>
+                <li><a asp-action="CreateUser" asp-controller="Users">Register</a></li>
+                <li><a asp-action="ViewLogIn" asp-controller="Home">Log In</a></li>
+            </ul>
+
+        </nav>*@
+  
+    @*<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>*@
+
+  
+
+
+        <div class="row">
+            <div class="col-md-4" style="padding-left:1%" >
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label style="text-align:left" asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="TelephoneNo" class="control-label"></label>
+                        <input asp-for="TelephoneNo" class="form-control" />
+                        <span asp-validation-for="TelephoneNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group" style="padding-top:1em ; text-align:left" >
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            </div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+  
+
+
+
