@@ -118,7 +118,7 @@ namespace web_project.Data
                 },
                  new IdentityRole
                  {
-                     Id = "2",
+                     Id = "3",
                      Name = "Student",
                      ConcurrencyStamp = "2"
                  }

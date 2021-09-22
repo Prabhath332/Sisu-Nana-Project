@@ -42,7 +42,7 @@ namespace web_project
             services.AddHttpContextAccessor();
 
             services.AddDbContext<web_projectContext>(options =>
-                    options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("web_projectContext")));
             //  services.AddDbContext<web_projectContext>(options =>
             //options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
 

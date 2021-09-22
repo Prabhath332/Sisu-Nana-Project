@@ -18,7 +18,7 @@
     <script src="filename.js?version = 2.1"></script>
 
 
-    <title>HRIS System </title>
+    <title>Tution System </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -27,21 +27,20 @@
 <body class="landing">
     <!-- Header -->
     <header id="header" class="alt">
-        <h1><strong><a asp-controller="Home" asp-action="Index">Sport Management</a></strong> </h1>
+        <h1><strong><a asp-controller="Home" asp-action="Index">Tution Management</a></strong> </h1>
         <nav id="nav">
             <ul>
                 @{
                     if (this.User.Identity.IsAuthenticated)
                     {
                         @*<li><a asp-action="Index" asp-controller="Users">Users</a></li>*@
-                        <li><a asp-action="Index" asp-controller="Staffs">Staff</a></li>
+                        <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                        <li><a asp-action="Index" asp-controller="Classes">Teachers</a></li>
+                        <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
 
-                        <li><a asp-action="Index" asp-controller="Salaries">Salary</a></li>
-                        <li><a asp-action="Index" asp-controller="SalaryAdvances">Salary Advance</a></li>
-                        <li><a asp-action="Index" asp-controller="Allowances">Allowance</a></li>
-                        <li><a asp-action="Index" asp-controller="Deductions">Deduction</a></li>
 
-                        
+
+
                         <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
                     }
                     else
@@ -68,7 +67,7 @@
         <h2>HRIS System</h2>
         <p> </p>
         <ul class="actions">
-            <li><a asp-controller="Home" asp-action="Index" class="button special big">Sport Management </a></li>
+            <li><a asp-controller="Home" asp-action="Index" class="button special big">Tution Management </a></li>
         </ul>
 
     </section>
