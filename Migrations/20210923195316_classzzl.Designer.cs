@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_project.Data;
 
 namespace web_project.Migrations
 {
     [DbContext(typeof(web_projectContext))]
-    partial class web_projectContextModelSnapshot : ModelSnapshot
+    [Migration("20210923195316_classzzl")]
+    partial class classzzl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,15 +161,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f1716b09-a4c4-4066-affd-89689ca223c0",
+                            ConcurrencyStamp = "7955243e-0a92-46ed-8ac5-70d4d3cfa566",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAU+czZlwZln3vPuhAtAYpf+sc8FS+WtSTVRxnGfJUzWdWGquFadE5jE72WUyakUJw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC+8RoxYcNpyc6/QrCajtnhHgQi5lxOVPaIk33LaTqiRzFEvO3AanJ6pklVmST7G3Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a602f411-a4d9-4146-9c3c-350ac3225d46",
+                            SecurityStamp = "c4a219e2-9458-4aa1-8468-19db0e07e106",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -260,21 +262,6 @@ namespace web_project.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("web_project.Models.Bank", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bank");
-                });
-
             modelBuilder.Entity("web_project.Models.Class", b =>
                 {
                     b.Property<int>("Id")
@@ -334,26 +321,11 @@ namespace web_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AccountName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AccountNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BankId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Branch")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Grade")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
@@ -364,9 +336,6 @@ namespace web_project.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nic")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -386,8 +355,6 @@ namespace web_project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BankId");
 
                     b.ToTable("User");
                 });
@@ -457,15 +424,6 @@ namespace web_project.Migrations
                     b.HasOne("web_project.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("web_project.Models.User", b =>
-                {
-                    b.HasOne("web_project.Models.Bank", "Bank")
-                        .WithMany()
-                        .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -65,6 +65,12 @@ namespace web_project.Data
 
         }
 
+        public DbSet<web_project.Models.Class> Class { get; set; }
+
+        public DbSet<web_project.Models.RegistedStudent> RegistedStudent { get; set; }
+
+        public DbSet<web_project.Models.User> User { get; set; }
+
 
 
     }

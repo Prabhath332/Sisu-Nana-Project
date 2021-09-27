@@ -35,7 +35,7 @@
                     {
                         @*<li><a asp-action="Index" asp-controller="Users">Users</a></li>*@
                         <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                        <li><a asp-action="Index" asp-controller="Classes">Teachers</a></li>
+                        <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
                         <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
 
 
@@ -45,6 +45,8 @@
                     }
                     else
                     {
+                        <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+
                         <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
 
                     }
@@ -64,7 +66,7 @@
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
     <!-- Banner -->
     <section id="banner" style="height:750px">
-        <h2>HRIS System</h2>
+        <h2>Tution Management</h2>
         <p> </p>
         <ul class="actions">
             <li><a asp-controller="Home" asp-action="Index" class="button special big">Tution Management </a></li>

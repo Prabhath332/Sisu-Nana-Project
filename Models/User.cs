@@ -50,7 +50,26 @@ namespace web_project.Models
        // [EmailAddress]
         public string Email { get; set; }
 
-     
+        public string Image { get; set; }
+        public string Nic { get; set; }
+        public string Grade { get; set; }
+
+
+
+        public Bank Bank { get; set; }
+        public int BankId { get; set; }
+
+        public string Branch { get; set; }
+        public string AccountNo { get; set; }
+        public string AccountName { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile  { get; set; }
+
+
+
+
+
+
     }
 
 }

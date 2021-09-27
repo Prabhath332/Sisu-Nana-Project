@@ -40,23 +40,25 @@
                         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                             <ul class="navbar-nav flex-grow-1" style="color:white">
                                 @{
+                                    if (AppManage.LoggedInType > 0)
+                                    {
 
-                                    <li class="nav-item">
-                                        <a style="color:white" class="nav-link " asp-controller="EnterAttendances" asp-action="Index"> Attendance</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a style="color:white" class="nav-link " asp-controller="Staffs" asp-action="Index"> Staff</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a style="color:white" class="nav-link " asp-controller="Deductions" asp-action="Index"> Deduction</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a style="color:white" class="nav-link " asp-controller="Deductions" asp-action="PendingDeductions"> Clearance</a>
-                                    </li>
-                                   
+                                        <li class="nav-item">
+                                            <a style="color:white" class="nav-link " asp-controller="Classses" asp-action="Index"> Classses</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Teachers</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Students</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a style="color:white" class="nav-link " asp-controller="Materials" asp-action="Index"> Materials</a>
+                                        </li>
 
-                                   
-                                }
+                                    }
+
+                                    }
 
                             </ul>
 

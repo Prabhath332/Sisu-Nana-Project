@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web_project.Migrations
 {
-    public partial class init : Migration
+    public partial class classzzl : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,27 @@ namespace web_project.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 15, nullable: false),
+                    TelephoneNo = table.Column<string>(maxLength: 10, nullable: true),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    UserTypeId = table.Column<string>(nullable: true),
+                    IsActive = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +173,50 @@ namespace web_project.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(nullable: false),
+                    Grade = table.Column<int>(nullable: false),
+                    Subject = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Class", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Class_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RegistedStudent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassCode = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegistedStudent", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RegistedStudent_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -165,7 +230,7 @@ namespace web_project.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "72e3e2bd-b94a-4996-b684-07b9d88f9841", 0, "75968bef-535f-4a34-bf13-bdc7241d2b4d", "admin@outlook.com", false, false, null, "admin@outlook.com", "Admin", "AQAAAAEAACcQAAAAED+Xq58hPPXXx12r6wvwLY14+CpWEXG6SBZgtr4nd5QRLbnuqIMv8Jer+/bW2Uy6OA==", null, false, "9cf63381-cb07-4711-bdf4-4fece4219cbb", false, "Admin" });
+                values: new object[] { "72e3e2bd-b94a-4996-b684-07b9d88f9841", 0, "7955243e-0a92-46ed-8ac5-70d4d3cfa566", "admin@outlook.com", false, false, null, "admin@outlook.com", "Admin", "AQAAAAEAACcQAAAAEC+8RoxYcNpyc6/QrCajtnhHgQi5lxOVPaIk33LaTqiRzFEvO3AanJ6pklVmST7G3Q==", null, false, "c4a219e2-9458-4aa1-8468-19db0e07e106", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -210,6 +275,16 @@ namespace web_project.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Class_UserId",
+                table: "Class",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RegistedStudent_UserId",
+                table: "RegistedStudent",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -230,10 +305,19 @@ namespace web_project.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Class");
+
+            migrationBuilder.DropTable(
+                name: "RegistedStudent");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

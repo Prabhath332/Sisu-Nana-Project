@@ -1,0 +1,36 @@
+﻿@model IEnumerable<web_project.Models.Class>
+
+@{
+    ViewData["Title"] = "Teachers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-3">
+
+            <form asp-action="AddToCart">
+                <td style="width:30px">
+                    <img height="125" width="115" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
+                    <br />
+
+                    &nbsp @Html.DisplayFor(modelItem => item.Subject)
+                    <br />
+                    &nbsp  @Html.DisplayFor(modelItem => item.Time) 
+                    <br />
+                    <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
+                   
+                    <div class="form-group" style="padding-top:0em">
+                        <input style="width:110px ; " type="submit" value="Add" class="btn btn-primary" />
+                    </div>
+                </td>
+
+            </form>
+        </div>
+
+
+    }
+</div>

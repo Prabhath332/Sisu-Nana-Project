@@ -15,7 +15,7 @@ using web_project.Models;
 
 namespace web_project.Controllers
 {
-   [Authorize]
+  
     public class UsersController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -62,8 +62,19 @@ namespace web_project.Controllers
 
         public IActionResult CreateUser()
         {
+            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Id");
             return View();
         }
+        public IActionResult CreateTeacher()
+        {
+            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Id");
+            return View();
+        }
+        public IActionResult CreateStudent()
+        {
+            return View();
+        }
+
 
         [AllowAnonymous]
         public async Task<IActionResult> LogIn([Bind("UserName,Password")] User user)
@@ -128,7 +139,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Password,ConfirmPassword,FirstName,LastName,Email,Address,ContactNo,TelephoneNo,UserTypeId")] User user)
+        public async Task<IActionResult> CreateTeachar([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
         {
           string  returnUrl = Url.Content("~/");
 
@@ -164,7 +175,49 @@ namespace web_project.Controllers
 
             }
 
-            return View("CreateUser", user);
+            return View(user);
+
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        {
+            string returnUrl = Url.Content("~/");
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+
+                    var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email };
+
+                    var result = await _userManager.CreateAsync(IdentityUser, user.Password);
+                    if (result.Succeeded)
+                    {
+
+                        await _userManager.AddToRoleAsync(IdentityUser, "Officer");
+                        _logger.LogInformation("User created a new account with password.");
+
+                        await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return RedirectToAction("Index", "Home");
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+            }
+
+            return View( user);
 
 
         }
@@ -186,7 +239,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,ConfirmPassword,FirstName,LastName,Email,Address,ContactNo,TelephoneNo,Gender,UserTypeId")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,Email,Image,Nic,Grade,BankId,Branch,AccountNo,AccountName")] User user)
         {
             if (id != user.Id)
             {
