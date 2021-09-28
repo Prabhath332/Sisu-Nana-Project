@@ -152,7 +152,7 @@ namespace web_project.Controllers
                     if (result.Succeeded)
                     {
                       
-                       await _userManager.AddToRoleAsync(IdentityUser,"Officer");
+                       await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
                         _logger.LogInformation("User created a new account with password.");
 
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
@@ -194,7 +194,7 @@ namespace web_project.Controllers
                     if (result.Succeeded)
                     {
 
-                        await _userManager.AddToRoleAsync(IdentityUser, "Officer");
+                        await _userManager.AddToRoleAsync(IdentityUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
 
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);

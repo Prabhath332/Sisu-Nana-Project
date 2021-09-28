@@ -40,25 +40,40 @@
                         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                             <ul class="navbar-nav flex-grow-1" style="color:white">
                                 @{
-                                    if (AppManage.LoggedInType > 0)
+                                    if (this.User.Identity.IsAuthenticated)
                                     {
+                                        var role = this.User.Claims.ElementAt(3).Value;
 
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Classses" asp-action="Index"> Classses</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Teachers</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Students</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Materials" asp-action="Index"> Materials</a>
-                                        </li>
+                                        if (role == "Admin")
+                                        {
+                                            <li class="nav-item">
+                                                <a style="color:white" class="nav-link " asp-controller="Classses" asp-action="Index"> Classses</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Teachers</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Students</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a style="color:white" class="nav-link " asp-controller="Materials" asp-action="Index"> Materials</a>
+                                            </li>
+                                        }
+                                        else if (role == "Student")
+                                        {
+                                            // menu
+                                        }
+                                        else if (role == "Teacher")
+                                        {
+                                            // menu
+                                        }
+
+
+
 
                                     }
 
-                                    }
+                                }
 
                             </ul>
 

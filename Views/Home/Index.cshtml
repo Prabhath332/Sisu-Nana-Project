@@ -33,10 +33,24 @@
                 @{
                     if (this.User.Identity.IsAuthenticated)
                     {
-                        @*<li><a asp-action="Index" asp-controller="Users">Users</a></li>*@
-                        <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                        <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
-                        <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                        var role = this.User.Claims.ElementAt(3).Value;
+
+                        if (role == "Admin")
+                        {
+                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                        }
+                        else if(role=="Student")
+                        {
+                            // menu
+                        }
+                        else if (role == "Teacher")
+                        {
+                            // menu
+                        }
+
+
 
 
 
