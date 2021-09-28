@@ -45,8 +45,6 @@ namespace web_project.Controllers
                 return View(await _context.Users.ToListAsync());
         }
 
-
-
         public async Task<IActionResult> MainHome()
         {
             if (true)
@@ -148,7 +146,6 @@ namespace web_project.Controllers
                 try
                 {
                 
-
                     var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email  };
                     
                     var result = await _userManager.CreateAsync(IdentityUser, user.Password);
@@ -258,14 +255,7 @@ namespace web_project.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    //if (!UserExists(user.Id))
-                    //{
-                    //    return NotFound();
-                    //}
-                    //else
-                    //{
-                    //    throw;
-                    //}
+                    
                 }
 
 
