@@ -10,8 +10,8 @@ using web_project.Data;
 namespace web_project.Migrations
 {
     [DbContext(typeof(web_projectContext))]
-    [Migration("20210924144753_hj")]
-    partial class hj
+    [Migration("20211001100612_techrxz")]
+    partial class techrxz
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,15 +161,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f1716b09-a4c4-4066-affd-89689ca223c0",
+                            ConcurrencyStamp = "c60c6955-c599-4bc3-95a2-8a23c302ecde",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAU+czZlwZln3vPuhAtAYpf+sc8FS+WtSTVRxnGfJUzWdWGquFadE5jE72WUyakUJw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEEILR/rUOwcpOjy5+OUH/3OB5jQmzlPL/g2vVgkZQ/1xr/N2zYHOl6ZMBKUHf0WNA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a602f411-a4d9-4146-9c3c-350ac3225d46",
+                            SecurityStamp = "617e5603-48b4-49ee-9280-90bce3867ce7",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -296,15 +296,13 @@ namespace web_project.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Teacher")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Class");
                 });
@@ -439,15 +437,6 @@ namespace web_project.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("web_project.Models.Class", b =>
-                {
-                    b.HasOne("web_project.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

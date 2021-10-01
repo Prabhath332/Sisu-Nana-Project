@@ -44,6 +44,11 @@ namespace web_project.Controllers
         {      
                 return View(await _context.Users.ToListAsync());
         }
+        public async Task<IActionResult> Teachers()
+        {
+            List<User> users = new List<User>(); 
+            return View(users);
+        }
 
         public async Task<IActionResult> MainHome()
         {

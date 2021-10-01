@@ -159,15 +159,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0390c9c1-6532-4fd9-bd06-ff65b192d0bd",
+                            ConcurrencyStamp = "c60c6955-c599-4bc3-95a2-8a23c302ecde",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEPk7weTMs50mVGlD2CRwDZ61ZOMNXB66eSXO8GmtuOZX1x2zhST4RVPWhctsKnk1Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEEILR/rUOwcpOjy5+OUH/3OB5jQmzlPL/g2vVgkZQ/1xr/N2zYHOl6ZMBKUHf0WNA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d15c8f8c-6ca6-400a-920b-7520a5ca93e4",
+                            SecurityStamp = "617e5603-48b4-49ee-9280-90bce3867ce7",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -294,18 +294,13 @@ namespace web_project.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Teacher")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("Class");
                 });
@@ -444,13 +439,6 @@ namespace web_project.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("web_project.Models.Class", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("web_project.Models.RegistedStudent", b =>

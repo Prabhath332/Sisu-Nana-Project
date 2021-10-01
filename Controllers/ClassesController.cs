@@ -24,7 +24,12 @@ namespace web_project.Controllers
         // GET: Classes
         public async Task<IActionResult> Index()
         {
-            var web_projectContext = _context.Class.Include(a => a.User);
+            var web_projectContext = _context.Class;
+            return View(await web_projectContext.ToListAsync());
+        }
+        public async Task<IActionResult> Classes()
+        {
+            var web_projectContext = _context.Class;
             return View(await web_projectContext.ToListAsync());
         }
 
@@ -37,7 +42,7 @@ namespace web_project.Controllers
             }
 
             var @class = await _context.Class
-                .Include(a => a.User)
+                
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@class == null)
             {
@@ -63,7 +68,7 @@ namespace web_project.Controllers
         {
             if (ModelState.IsValid)
             {
-             //   @class.UserId = this.User.Identity.Name;
+               @class.Teacher = this.User.Identity.Name;
                 var img = this.UploadedFile(@class.Advertiesment);
                 @class.Image = img;
                 _context.Add(@class);
@@ -83,7 +88,6 @@ namespace web_project.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", @class.UserId);
             return View(@class);
         }
 
@@ -100,7 +104,6 @@ namespace web_project.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", @class.UserId);
             return View(@class);
         }
 
@@ -142,7 +145,6 @@ namespace web_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", @class.UserId);
             return View(@class);
         }
 
@@ -155,7 +157,7 @@ namespace web_project.Controllers
             }
 
             var @class = await _context.Class
-                .Include(a => a.User)
+               
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@class == null)
             {

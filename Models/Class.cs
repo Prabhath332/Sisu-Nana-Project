@@ -9,8 +9,7 @@ namespace web_project.Models
     public class Class
     {
         public int Id { get; set; }
-        public IdentityUser User { get; set; }
-        public int UserId { get; set; }
+        public string Teacher { get; set; }
         public int Grade { get; set; }
         public string Subject { get; set; }
 
