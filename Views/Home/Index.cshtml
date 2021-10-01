@@ -38,19 +38,25 @@
                         if (role == "Admin")
                         {
                             <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+
                             <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
                         else if (role == "Student")
                         {
-                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+
                             <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
                         else if (role == "Teacher")
                         {
+                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+
                             <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
                             <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
 

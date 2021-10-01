@@ -46,8 +46,13 @@ namespace web_project.Controllers
         }
         public async Task<IActionResult> Teachers()
         {
-            List<User> users = new List<User>(); 
-            return View(users);
+           // List <User> users = new List<User>() 
+            return View(await _context.User.Where(a=>a.UserTypeId=="2").ToListAsync());
+        }
+        public async Task<IActionResult> Students()
+        {
+            // List <User> users = new List<User>() 
+            return View(await _context.User.Where(a => a.UserTypeId == "1").ToListAsync());
         }
 
         public async Task<IActionResult> MainHome()
@@ -159,7 +164,9 @@ namespace web_project.Controllers
                       
                        await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
                         _logger.LogInformation("User created a new account with password.");
-
+                        user.UserTypeId = "2";
+                        _context.Add(user);
+                        await  _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
@@ -199,7 +206,9 @@ namespace web_project.Controllers
                                                                          
                         await _userManager.AddToRoleAsync(IdentityUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
-
+                        user.UserTypeId = "3";
+                        _context.Add(user);
+                        await _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
                         return RedirectToAction("Index", "Home");
 
