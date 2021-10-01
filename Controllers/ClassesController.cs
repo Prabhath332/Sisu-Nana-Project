@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -61,11 +63,13 @@ namespace web_project.Controllers
         {
             if (ModelState.IsValid)
             {
+             //   @class.UserId = this.User.Identity.Name;
+                var img = this.UploadedFile(@class.Advertiesment);
+                @class.Image = img;
                 _context.Add(@class);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", @class.UserId);
             return View(@class);
         }
 
@@ -105,7 +109,7 @@ namespace web_project.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Advertiesment,UserId,Grade,Subject,Date,Time")] Class @class)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Advertiesment,UserId,Grade,Subject,Date,Time,Image")] Class @class)
         {
             if (id != @class.Id)
             {
@@ -116,6 +120,12 @@ namespace web_project.Controllers
             {
                 try
                 {
+                    if(@class.Advertiesment !=null)
+                    {
+                        var img = this.UploadedFile(@class.Advertiesment);
+                        @class.Image = img;
+                    }
+                   
                     _context.Update(@class);
                     await _context.SaveChangesAsync();
                 }
@@ -169,6 +179,44 @@ namespace web_project.Controllers
         private bool ClassExists(int id)
         {
             return _context.Class.Any(e => e.Id == id);
+        }
+
+        private string UploadedFile(IFormFile File)
+        {
+            string uniqueFileName = null;
+
+            if (File != null)
+            {
+
+                string path = AppManage.requestimagePath;
+                try
+                {
+
+                    if (Directory.Exists(path))
+                    {
+
+                    }
+                    else
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(path);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("The process failed: {0}", e.ToString());
+                }
+
+
+                uniqueFileName = Guid.NewGuid().ToString().Split("-").ElementAt(0) + "_" + File.FileName;
+
+                string filePath = Path.Combine(AppManage.requestimagePath, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    File.CopyTo(fileStream);
+                }
+            }
+            return @"images\" + uniqueFileName;
         }
     }
 }

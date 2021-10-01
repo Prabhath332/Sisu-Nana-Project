@@ -137,7 +137,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTeachar([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateTeachar([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
         {
           string  returnUrl = Url.Content("~/");
 
@@ -178,7 +178,7 @@ namespace web_project.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,ConfirmPassword,Email,Image,Nic,Grade,BankId,Branch,AccountNo,AccountName")] User user)
         {
             string returnUrl = Url.Content("~/");
 
@@ -186,25 +186,24 @@ namespace web_project.Controllers
             {
                 try
                 {
-
-
                     var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email };
 
                     var result = await _userManager.CreateAsync(IdentityUser, user.Password);
                     if (result.Succeeded)
                     {
-
+                                                                         
                         await _userManager.AddToRoleAsync(IdentityUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
 
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return RedirectToAction("Index", "Home");
+
                     }
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return View(user);
 
                 }
                 catch (Exception ex)

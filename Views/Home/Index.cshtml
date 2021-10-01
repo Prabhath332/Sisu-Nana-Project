@@ -41,13 +41,17 @@
                             <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
                             <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
-                        else if(role=="Student")
+                        else if (role == "Student")
                         {
-                            // menu
+                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
                         else if (role == "Teacher")
                         {
-                            // menu
+                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Index" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
 
 
