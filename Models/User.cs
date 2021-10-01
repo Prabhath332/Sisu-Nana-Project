@@ -40,16 +40,15 @@ namespace web_project.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
 
-        //[Required]
+
         [DisplayName("User role")]
         public string UserTypeId { get; set; }
 
         [DisplayName("Active Status")]
         public int IsActive { get; set; }
 
-       // [EmailAddress]
-        public string Email { get; set; }
 
+        public string Email { get; set; }
         public string Image { get; set; }
         public string Nic { get; set; }
         public string Grade { get; set; }
@@ -64,12 +63,6 @@ namespace web_project.Models
         public string AccountName { get; set; }
         [NotMapped]
         public IFormFile ImageFile  { get; set; }
-
-
-
-
-
-
     }
 
 }

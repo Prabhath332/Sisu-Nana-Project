@@ -1,8 +1,4 @@
-﻿
-
-
-
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <!--
 
     Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
@@ -18,16 +14,20 @@
     <script src="filename.js?version = 2.1"></script>
 
 
-    <title>Tution System </title>
+    <title>E-Learning system </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
 </head>
 
 <body class="landing">
-    <!-- Header -->
+    <!-- Header nav bar -->
     <header id="header" class="alt">
-        <h1><strong><a asp-controller="Home" asp-action="Index">Tution Management</a></strong> </h1>
         <nav id="nav">
             <ul>
                 @{
@@ -36,6 +36,7 @@
                         var role = this.User.Claims.ElementAt(3).Value;
 
                         if (role == "Admin")
+
                         {
                             <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
@@ -59,74 +60,123 @@
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
                             <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
                         }
-
                         <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
                     }
                     else
                     {
                         <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                        <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
 
                         <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
-
                     }
                 }
             </ul>
-           
+
         </nav>
     </header>
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+
     <!-- Banner -->
     <section id="banner" style="height:750px">
-        <h2>Tution Management</h2>
+        <h2> සිසු නැණ අද්‍යාපනික වෙබ් අඩවිය </h2>
         <p> </p>
         <ul class="actions">
-            <li><a asp-controller="Home" asp-action="Index" class="button special big">Tution Management </a></li>
+            <li><a asp-controller="Home" asp-action="Index" class="button special big">Class Advertisements</a></li>
         </ul>
-
     </section>
-    <!-- One -->
-    <!-- Two -->
-    @*<section id="two" class="wrapper style2 special">
 
-        </section>*@
-    <!-- Three -->
-    <section id="three" class="wrapper style1">
+
+    <!-- Two feature -->
+    <section id="two" class="wrapper style2 special">
         <div class="container">
-            <header class="major special">
-            </header>
-            <div class="feature-grid">
-                <div class="feature">
-                    <div class="image rounded"><img src="~/images/leafspot.jpg" alt="" /></div>
-                    <div class="content">
-                        <header>
-                        </header>
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="feature-thumb">
+                        <span>01</span>
+                        <h3>Tuition Classes</h3>
+                        <p>The website is given the opportunity to choose a teacher of their choice and engage in the educational activities of their choice.</p>
                     </div>
                 </div>
-                <div class="feature">
-                    <div class="image rounded"><img src="~/images/mosaic.jpg" alt="" /></div>
-                    <div class="content">
-                        <header>
-                        </header>
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="feature-thumb">
+                        <span>02</span>
+                        <h3>Books & Library</h3>
+                        <p> Contains textbooks and other educational materials that are essential for students. This allows you to download any file you want, for free.</p>
                     </div>
                 </div>
-                <div class="feature">
-                    <div class="image rounded"><img src="~/images/mildew.jpg" alt="" /></div>
-                    <div class="content">
-                        <header>
-                        </header>
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="feature-thumb">
+                        <span>03</span>
+                        <h3>Certified Teachers</h3>
+                        <p>It is a social service carried out by teachers from different parts of the island to enhance the level of education of students. Its main objective is to uplift the education of students in the country</p>
                     </div>
                 </div>
-                <div class="feature">
-                    <div class="image rounded"><img src="~/images/rust.jpg" alt="" /></div>
-                    <div class="content">
-                        <header>
-                        </header>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
-    <!-- Four -->
+
+
+
+
+    <!-- Three about  -->
+    <section id="three" class="wrapper style1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="about-info">
+                        <h2>Start your journey to a better life with online Teaching</h2>
+                        <figure>
+                            <span><i class="fa fa-users"></i></span>
+                            <figcaption>
+                                <h3>Meet Professional Teachers</h3>
+                                <p>Educate with professional teachers in different areas of the country</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure>
+                            <span><i class="fa fa-certificate"></i></span>
+                            <figcaption>
+                                <h3>Communicate With Others</h3>
+                                <p>Discuss education deficiencies, weaknesses, suggestions and allegations and collaborate with everyone's ideas..</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure>
+                            <span><i class="fa fa-bar-chart-o"></i></span>
+                            <figcaption>
+                                <h3>Free Text Books & Learning Materials</h3>
+                                <p>Download the required learning materials(Text Books & other materials)</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-offset-1 col-md-4 col-sm-12">
+                    <div class="entry-form">
+                        <form action="#" method="post">
+                            <h2>Website Donations</h2>
+                            <input type="text" name="full name" class="form-control" placeholder="Full name" required="">
+
+                            <input type="email" name="email" class="form-control" placeholder="Your email address" required="">
+
+                            <input type="Amount" name="password" class="form-control" placeholder="Amount" required="">
+
+                            <button class="submit-btn form-control" id="form-submit">Donate</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Four teacher-->
     <section id="four" class="wrapper style3 special">
         <div class="container">
             <header class="major">
@@ -135,6 +185,12 @@
             </ul>
         </div>
     </section>
+
+
+
+
+
+
     <!-- Footer -->
     <footer id="footer">
         <div class="container">
