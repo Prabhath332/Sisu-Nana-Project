@@ -41,8 +41,8 @@ namespace web_project.Data
             foreach (var entity in added)
             {
                 var track = entity as BaseModel;
-                track.CreatedDate = System.DateTime.Now;
-                track.CreatedUserName = user.Identity.Name;
+              //  track.CreatedDate = System.DateTime.Now;
+              //  track.CreatedUserName = user.Identity.Name;
             }
 
             return base.SaveChanges();

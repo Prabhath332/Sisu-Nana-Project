@@ -14,10 +14,12 @@
 
             <form asp-action="AddToCart">
                 <td style="width:30px">
-                    <img height="125" width="115" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
+                    <img height="225" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
                     <br />
 
                     &nbsp @Html.DisplayFor(modelItem => item.Subject)
+                    <br />
+                    &nbsp  @Html.DisplayFor(modelItem => item.Date) 
                     <br />
                     &nbsp  @Html.DisplayFor(modelItem => item.Time) 
                     <br />

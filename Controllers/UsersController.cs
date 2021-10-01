@@ -44,6 +44,16 @@ namespace web_project.Controllers
         {      
                 return View(await _context.Users.ToListAsync());
         }
+        public async Task<IActionResult> Teachers()
+        {
+           // List <User> users = new List<User>() 
+            return View(await _context.User.Where(a=>a.UserTypeId=="2").ToListAsync());
+        }
+        public async Task<IActionResult> Students()
+        {
+            // List <User> users = new List<User>() 
+            return View(await _context.User.Where(a => a.UserTypeId == "1").ToListAsync());
+        }
 
         public async Task<IActionResult> MainHome()
         {
@@ -137,7 +147,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTeachar([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateTeachar([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
         {
           string  returnUrl = Url.Content("~/");
 
@@ -154,7 +164,9 @@ namespace web_project.Controllers
                       
                        await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
                         _logger.LogInformation("User created a new account with password.");
-
+                        user.UserTypeId = "2";
+                        _context.Add(user);
+                        await  _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
@@ -178,7 +190,7 @@ namespace web_project.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,ConfirmPassword,Email,Image,Nic,Grade,BankId,Branch,AccountNo,AccountName")] User user)
         {
             string returnUrl = Url.Content("~/");
 
@@ -186,25 +198,26 @@ namespace web_project.Controllers
             {
                 try
                 {
-
-
                     var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email };
 
                     var result = await _userManager.CreateAsync(IdentityUser, user.Password);
                     if (result.Succeeded)
                     {
-
+                                                                         
                         await _userManager.AddToRoleAsync(IdentityUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
-
+                        user.UserTypeId = "3";
+                        _context.Add(user);
+                        await _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return RedirectToAction("Index", "Home");
+
                     }
                     foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return View(user);
 
                 }
                 catch (Exception ex)

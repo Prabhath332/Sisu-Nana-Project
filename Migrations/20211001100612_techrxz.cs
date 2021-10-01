@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web_project.Migrations
 {
-    public partial class classzzl : Migration
+    public partial class techrxz : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,24 +47,34 @@ namespace web_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Bank",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(maxLength: 15, nullable: false),
-                    TelephoneNo = table.Column<string>(maxLength: 10, nullable: true),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    UserTypeId = table.Column<string>(nullable: true),
-                    IsActive = table.Column<int>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bank", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Teacher = table.Column<string>(nullable: true),
+                    Grade = table.Column<int>(nullable: false),
+                    Subject = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false),
                     Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Class", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,25 +184,34 @@ namespace web_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Class",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
-                    Grade = table.Column<int>(nullable: false),
-                    Subject = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: false),
-                    Image = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 15, nullable: false),
+                    TelephoneNo = table.Column<string>(maxLength: 10, nullable: true),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    UserTypeId = table.Column<string>(nullable: true),
+                    IsActive = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    Nic = table.Column<string>(nullable: true),
+                    Grade = table.Column<string>(nullable: true),
+                    BankId = table.Column<int>(nullable: false),
+                    Branch = table.Column<string>(nullable: true),
+                    AccountNo = table.Column<string>(nullable: true),
+                    AccountName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Class", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Class_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
+                        name: "FK_User_Bank_BankId",
+                        column: x => x.BankId,
+                        principalTable: "Bank",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -230,7 +249,7 @@ namespace web_project.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "72e3e2bd-b94a-4996-b684-07b9d88f9841", 0, "7955243e-0a92-46ed-8ac5-70d4d3cfa566", "admin@outlook.com", false, false, null, "admin@outlook.com", "Admin", "AQAAAAEAACcQAAAAEC+8RoxYcNpyc6/QrCajtnhHgQi5lxOVPaIk33LaTqiRzFEvO3AanJ6pklVmST7G3Q==", null, false, "c4a219e2-9458-4aa1-8468-19db0e07e106", false, "Admin" });
+                values: new object[] { "72e3e2bd-b94a-4996-b684-07b9d88f9841", 0, "c60c6955-c599-4bc3-95a2-8a23c302ecde", "admin@outlook.com", false, false, null, "admin@outlook.com", "Admin", "AQAAAAEAACcQAAAAEEEILR/rUOwcpOjy5+OUH/3OB5jQmzlPL/g2vVgkZQ/1xr/N2zYHOl6ZMBKUHf0WNA==", null, false, "617e5603-48b4-49ee-9280-90bce3867ce7", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -277,14 +296,14 @@ namespace web_project.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Class_UserId",
-                table: "Class",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RegistedStudent_UserId",
                 table: "RegistedStudent",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_BankId",
+                table: "User",
+                column: "BankId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -318,6 +337,9 @@ namespace web_project.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Bank");
         }
     }
 }
