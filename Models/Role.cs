@@ -11,7 +11,6 @@ namespace web_project.Models
         public SystemRole() : base()
         {
         }
-
         public SystemRole(string roleName)
         {
             Name = roleName;
