@@ -15,21 +15,21 @@
 <body class="landing">
     <!-- Header -->
     <header id="header" class="alt">
-        <h1><strong><a asp-action="Index" asp-controller="Home">Tution</a></strong></h1>
-       
-        
+        <h1><strong><a asp-action="Index" asp-controller="Home"> </a></strong></h1>
+
+
         <nav id="nav">
             <ul>
-                @*<li><a asp-action="Index" asp-controller="Advertiesments">View </a></li>*@
-                @*<li><a asp-action="CreateUser" asp-controller="Users">Register</a></li>*@
+                <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
             </ul>
         </nav>
     </header>
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
     <!-- Banner -->
     <section id="banner">
-
-
         <form asp-action="UserRegister">
             <div class="row uniform 150%" style="color:white">
                 <div class="3u 12u$(xsmall)">
@@ -61,7 +61,7 @@
             @{
                 if (AppManage.ErrorMsg.Length > 0)
                 {
-               
+
                     <div class="row">
                         <div class="12u$">
 
@@ -73,14 +73,13 @@
 
                         </div>
                     </div>
-                 }
+                }
             }
 
             <div class="row">
                 <div class="12u$">
-
                     <ul class="actions">
-                        <li><input type="submit" asp-action="LogIn" asp-controller="Users" value="Log In" class="special" /></li>                      
+                        <li><input type="submit" asp-action="LogIn" asp-controller="Users" value="Log In" class="special" /></li>
                     </ul>
                     <p>
 
@@ -90,11 +89,12 @@
 
 
     </section>
-
-    <script src="~/assets/js/jquery.min.js"></script>
-    <script src="~/assets/js/skel.min.js"></script>
-    <script src="~/assets/js/util.js"></script>
-    <script src="~/assets/js/main.js"></script>
+    <section id="banner">
+        </section>
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/skel.min.js"></script>
+        <script src="~/assets/js/util.js"></script>
+        <script src="~/assets/js/main.js"></script>
 </body>
 </html>
 

@@ -66,7 +66,6 @@
                     {
                         <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
                         <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
-
                         <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
                     }
                 }
@@ -88,106 +87,184 @@
 
 
     <!-- Two feature -->
-    <section id="two" class="wrapper style2 special">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>01</span>
-                        <h3>Tuition Classes</h3>
-                        <p>The website is given the opportunity to choose a teacher of their choice and engage in the educational activities of their choice.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>02</span>
-                        <h3>Books & Library</h3>
-                        <p> Contains textbooks and other educational materials that are essential for students. This allows you to download any file you want, for free.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>03</span>
-                        <h3>Certified Teachers</h3>
-                        <p>It is a social service carried out by teachers from different parts of the island to enhance the level of education of students. Its main objective is to uplift the education of students in the country</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-
-
     <!-- Three about  -->
+    <!-- Four teacher-->
+    <!-- Three -->
     <section id="three" class="wrapper style1">
         <div class="container">
-            <div class="row">
+            <center>
+                <header class="major special">
+                    <font face="Forte" size="25px" color="Black">Start your journey to a better life with online Teaching</font>
+                </header>
+            </center>
 
-                <div class="col-md-6 col-sm-12">
-                    <div class="about-info">
-                        <h2>Start your journey to a better life with online Teaching</h2>
-                        <figure>
-                            <span><i class="fa fa-users"></i></span>
-                            <figcaption>
-                                <h3>Meet Professional Teachers</h3>
-                                <p>Educate with professional teachers in different areas of the country</p>
-                            </figcaption>
-                        </figure>
-
-                        <figure>
-                            <span><i class="fa fa-certificate"></i></span>
-                            <figcaption>
-                                <h3>Communicate With Others</h3>
-                                <p>Discuss education deficiencies, weaknesses, suggestions and allegations and collaborate with everyone's ideas..</p>
-                            </figcaption>
-                        </figure>
-
-                        <figure>
-                            <span><i class="fa fa-bar-chart-o"></i></span>
-                            <figcaption>
-                                <h3>Free Text Books & Learning Materials</h3>
-                                <p>Download the required learning materials(Text Books & other materials)</p>
-                            </figcaption>
-                        </figure>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="image rounded">
+                        <img src="~/images/author-image1.jpg" />
+                    </div>
+                    <div class="content">
+                        <header>
+                            <h4><b>Akila Senewirathna</b></h4>
+                            <p>I love Teaching</p>
+                        </header>
+                        <p>"Teaching might even be the greatest of the arts since the medium is the human mind and spirit."<br />(John Steinbeck)</p>
                     </div>
                 </div>
 
-                <div class="col-md-offset-1 col-md-4 col-sm-12">
-                    <div class="entry-form">
-                        <form action="#" method="post">
-                            <h2>Website Donations</h2>
-                            <input type="text" name="full name" class="form-control" placeholder="Full name" required="">
-
-                            <input type="email" name="email" class="form-control" placeholder="Your email address" required="">
-
-                            <input type="Amount" name="password" class="form-control" placeholder="Amount" required="">
-
-                            <button class="submit-btn form-control" id="form-submit">Donate</button>
-                        </form>
+                <div class="feature">
+                    <div class="image rounded"><img src="~/images/author-image2.jpg" /></div>
+                    <div class="content">
+                        <header>
+                            <h4><b>Chandima Wijebandara</b></h4>
+                            <p>Education is the key</p>
+                        </header>
+                        <p> "A teacher who is attempting to teach without inspiring the pupil with a desire to learn is hammering on cold iron."<br />(Horace Mann) </p>
                     </div>
                 </div>
 
+                <div class="feature">
+                    <div class="image rounded"><img src="~/images/author-image3.jpg" /></div>
+                    <div class="content">
+                        <header>
+                            <h4><b>Chintha Wijesuriya</b></h4>
+                            <p>I like Online Teaching</p>
+                        </header>
+                        <p>"Teaching is only demonstrating that it is possible. Learning is making it possible for yourself."<br />(Paulo Coelho) </p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="image rounded"><img src="~/images/author-image4.jpg" /></div>
+                    <div class="content">
+                        <header>
+                            <h4><b>Dilum Chanaka</b></h4>
+                            <p>Teaching is fun</p>
+                        </header>
+                        <p>"Teachers have three loves: love of learning, love of learners, and the love of bringing the first two loves together."<br />(Scott Hayden) </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Four teacher-->
+
+    <!-- Banner -->
+    <section id="banner">
+        <h2>Textbooks, Books, Links & Educational Martials </h2>
+        <p> "Libraries store the energy that fuels the imagination.<br /> They open up windows to the world and inspire us to explore and achieve, <br />and contribute to improving our quality of life."<br /></p>
+        <p>[Sidney Sheldon]</p>
+    
+        <ul class="actions">
+            <li><a asp-controller="Users" asp-action="CreateUser" class="button special big">Books & Library</a></li>
+        </ul>
+    </section>
+
+
+    <!-- One -->
+    <section id="one" class="wrapper style1">
+        <div class="container 75%">
+            <div class="row 200%">
+                <div class="6u 12u$(medium)">
+                    <header class="major">
+                        <h2>Plant Diseases</h2>
+                        <p>Background</p>
+                    </header>
+                </div>
+                <div class="6u$ 12u$(medium)">
+                    <p>Sri Lanka is well-known for Agriculture that means most of the Sri Lankan people engaged in agriculture industry. The agriculture field plays an important role in economic sector of Sri Lanka. The plant diseases can be arising from biotic or abiotic origin. Biotic (infectious) diseases are developed owing to microbial infection, while abiotic (non-infectious) diseases are developed due to environmental factors.</p>
+                    <p>Due to the rapid human growth, habitat and urbanization and also the climate changes cause plant diseases. Increasing demand for safer plant produce has been one of the major concern at consumer level as well as the in national food supply chain and export agriculture in the era of global exchange of holy cultural products and plant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Two -->
+
+
+    @*<section id="three" class="wrapper style1">
+        <div class="container">
+            <center>
+                <header class="major special">
+                    <font face="Forte" size="25px" color="Black">Start your journey to a better life with online Teaching</font>
+                </header>
+            </center>
+
+            <div class="row">
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="img-thumbnail "><img src="~/images/courses-image.jpg" class="img-fluid" alt="" width="350px" height="350px"></div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="img-thumbnail"><img src="~/images/courses-image.jpg" class="img-fluid" alt="" width="350px" height="350px"></div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="img-thumbnail"><img src="~/images/courses-image.jpg" class="img-fluid" alt="" width="350px" height="350px"></div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="img-thumbnail"><img src="~/images/courses-image.jpg" class="img-fluid" alt="" width="350px" height="350px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>*@
+
+
+
+
+    <section id="two" class="wrapper style2 special">
+        <center>
+            <div class="feature">
+                <div class="container-fluid">
+                    <header class="major special">
+                        <h2>Class Advertisements</h2>
+                        <p>Upgrade your skills with newest classes</p>
+                    </header>
+
+                    <div class="row">
+                        <div class="column">
+                            <img src="~/images/courses-image.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                        <div class="column">
+                            <img src="~/images/courses-image1.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                        <div class="column">
+                            <img src="~/images/courses-image2.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                        <div class="column">
+                            <img src="~/images/courses-image3.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                        <div class="column">
+                            <img src="~/images/courses-image4.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                        <div class="column">
+                            <img src="~/images/courses-image5.jpg" class="img-fluid" alt="" width="350px" height="350px">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </center>
+    </section>
+
+
+
+    <!-- Four -->
     <section id="four" class="wrapper style3 special">
         <div class="container">
             <header class="major">
+                <h2>Infrom us about your plant leaf problems from here </h2>
+                <p>Pathologist is always available for you to give a fast solution</p>
             </header>
             <ul class="actions">
+                <li><a asp-controller="Requests" asp-action="Create" class="button special big">Make a Request</a></li>
             </ul>
         </div>
     </section>
-
-
-
 
 
 
@@ -201,14 +278,16 @@
             </ul>
             <ul class="copyright">
                 <li>&copy; Untitled</li>
-
             </ul>
         </div>
     </footer>
+
+
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
 </body>
 </html>
