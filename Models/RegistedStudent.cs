@@ -11,7 +11,7 @@ namespace web_project.Models
         public int Id { get; set; }
         [NotMapped]
         public Class Class { get; set; }
-        public int ClassCode { get; set; }
+        public int ClassId { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
     }

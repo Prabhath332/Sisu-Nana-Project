@@ -65,7 +65,7 @@ namespace web_project.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.ClassCode);
+            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.Id);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", registedStudent.UserId);
             return View(registedStudent);
         }
@@ -83,7 +83,7 @@ namespace web_project.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.ClassCode);
+            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.Id);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", registedStudent.UserId);
             return View(registedStudent);
         }
@@ -120,7 +120,7 @@ namespace web_project.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.ClassCode);
+            ViewData["ClassId"] = new SelectList(_context.Class, "Id", "Id", registedStudent.Id);
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName", registedStudent.UserId);
             return View(registedStudent);
         }

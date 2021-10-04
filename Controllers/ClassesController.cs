@@ -58,7 +58,23 @@ namespace web_project.Controllers
             ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "FirstName");
             return View();
         }
-
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToClass([Bind("Id,Advertiesment,UserId,Grade,Subject,Date,Time")] Class @class)
+        {
+            if (ModelState.IsValid)
+            {
+                RegistedStudent registedStudent = new RegistedStudent();
+                registedStudent.ClassId = @class.Id;
+                var user = _context.User.Where(a => a.UserName == this.User.Identity.Name);
+                registedStudent.UserId = user.FirstOrDefault().Id;        
+                _context.Add(registedStudent);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(@class);
+        }
         // POST: Classes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

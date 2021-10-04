@@ -209,6 +209,7 @@ namespace web_project.Controllers
                         user.UserTypeId = "3";
                         _context.Add(user);
                         await _context.SaveChangesAsync();
+                        
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
                         return RedirectToAction("Index", "Home");
 

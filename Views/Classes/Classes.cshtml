@@ -12,21 +12,24 @@
 
         <div class="col-md-3">
 
-            <form asp-action="AddToCart">
+            <form asp-action="AddToClass">
                 <td style="width:30px">
                     <img height="225" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
                     <br />
 
-                    &nbsp @Html.DisplayFor(modelItem => item.Subject)
+                 &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Subject)
                     <br />
-                    &nbsp  @Html.DisplayFor(modelItem => item.Date) 
+                    &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Date) 
                     <br />
-                    &nbsp  @Html.DisplayFor(modelItem => item.Time) 
+                      &nbsp  &nbsp  &nbsp  &nbsp  @Html.DisplayFor(modelItem => item.Time) 
                     <br />
                     <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
                    
                     <div class="form-group" style="padding-top:0em">
                         <input style="width:110px ; " type="submit" value="Add" class="btn btn-primary" />
+                    </div>
+                     <div class="form-group" style="padding-top:0em">
+                        <input style="width:110px ; " type="submit" value="Donate" class="btn btn-success" />
                     </div>
                 </td>
 
