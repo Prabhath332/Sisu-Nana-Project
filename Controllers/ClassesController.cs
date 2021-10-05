@@ -71,7 +71,7 @@ namespace web_project.Controllers
                 registedStudent.UserId = user.FirstOrDefault().Id;        
                 _context.Add(registedStudent);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Classes));
             }
             return View(@class);
         }

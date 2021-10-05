@@ -24,6 +24,12 @@ namespace web_project.Controllers
             return View(await web_projectContext.ToListAsync());
         }
 
+        public async Task<IActionResult> MyStudents()
+        {
+            var web_projectContext = _context.RegistedStudent.Include(r => r.Class).Include(r => r.User).Where(a=>a.Class.Teacher=="");
+            return View(await web_projectContext.ToListAsync());
+        }
+
         // GET: RegistedStudents/Details/5
         public async Task<IActionResult> Details(int? id)
         {
