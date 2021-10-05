@@ -21,8 +21,7 @@ namespace web_project.Data
                         appContext.Database.Migrate();
                     }
                     catch (Exception ex)
-                    {
-                        
+                    {    
                         throw;
                     }
                 }

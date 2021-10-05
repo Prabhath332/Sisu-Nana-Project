@@ -1,32 +1,12 @@
-﻿@model web_project.Models.User
+﻿@*model web_project.Models.User
 
-@{
-    ViewData["Title"] = "Register";
-    Layout = "_Layout";
-}
+    @{
+        ViewData["Title"] = "Register";
+        Layout = "_Layout";
+    }
 
-
-
-
-    <!-- Header -->
-  
-        @*<h1><strong><a asp-controller="Home" asp-action="Index"></a></strong> </h1>
-        <nav id="nav">
-            <ul>
-                <li><a asp-controller="Advertiesments" asp-action="Create">New Advertisement</a></li>
-                <li><a asp-action="CreateUser" asp-controller="Users">Register</a></li>
-                <li><a asp-action="ViewLogIn" asp-controller="Home">Log In</a></li>
-            </ul>
-
-        </nav>*@
-  
-    @*<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>*@
-
-  
-
-
-        <div class="row">
-            <div class="col-md-4" style="padding-left:1%" >
+    <div class="row">
+        <div class="col-md-4" style="padding-left:1%">
                 <form asp-action="CreateTeachar" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -51,7 +31,7 @@
                         <input asp-for="Nic" class="form-control" />
                         <span asp-validation-for="Nic" class="text-danger"></span>
                     </div>
-                   
+
                     <div class="form-group">
                         <label asp-for="BankId" class="control-label"></label>
                         <select asp-for="BankId" class="form-control" asp-items="ViewBag.BankId"></select>
@@ -77,7 +57,6 @@
                         <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
 
-
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
                         <input asp-for="Password" type="password" class="form-control" />
@@ -93,13 +72,218 @@
                         <input type="submit" value="Register" class="btn btn-primary" />
                     </div>
                 </form>
-            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+
+
+
+
+
+@model web_project.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<head>
+    <title>Tution Management</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+</head>
+
+<body class="landing">
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><strong><a asp-action="Index" asp-controller="Home"> </a></strong></h1>
+
+        <nav id="nav">
+            <ul>
+                <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
+            </ul>
+        </nav>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+    <section id="banner">
+        <form asp-action="CreateTeacher" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <div class="row uniform 50%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="FirstName" placeholder="First Name" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            @section Scripts {
-                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            }
-  
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="LastName" placeholder="Last Name" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="TelephoneNo" placeholder="Telephone No" class="form-control" />
+                                <span asp-validation-for="TelephoneNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="Email" placeholder="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <select asp-for="BankId" placeholder="Bank" class="form-control" asp-items="ViewBag.BankId"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="Branch" placeholder="Branch" class="form-control" />
+                                <span asp-validation-for="Branch" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="AccountNo" class="form-control" placeholder="Account No"/>
+                                <span asp-validation-for="AccountNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="UserName" class="form-control" placeholder="User Name" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Password"/>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row uniform 150%" style="color:white">
+                    <div class="3u 12u$(xsmall)"> </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
+                        <div style="width:100%">
+                            <div class="form-group">
+                                <div class="form-group" style="padding-top:1em ; text-align:left">
+                                    <center>
+                                        <input type="submit" value="Register" class="btn btn-primary" />
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </section>
+</body>
 
 
 
