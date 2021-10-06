@@ -42,7 +42,7 @@ namespace web_project.Controllers
       
         public async Task<IActionResult> Index()
         {      
-                return View(await _context.Users.ToListAsync());
+                return View(await _context.User.ToListAsync());
         }
         public async Task<IActionResult> Teachers()
         {
@@ -52,9 +52,12 @@ namespace web_project.Controllers
         public async Task<IActionResult> Students()
         {
             // List <User> users = new List<User>() 
+           var role =  this.User.Claims.ElementAt(3).Value;
+
             return View(await _context.User.Where(a => a.UserTypeId == "1").ToListAsync());
         }
 
+       
         public async Task<IActionResult> MainHome()
         {
             if (true)
@@ -279,51 +282,51 @@ namespace web_project.Controllers
         }
 
 
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var user = await _context.User
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var user = await _context.User
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-        //    if (AppManage.LoggedInType <= 0)
-        //    {
-        //        return RedirectToAction("ViewLogIn", "Home");
-        //    }
-        //    else
-        //    {
-        //        return View(user);
+            if (AppManage.LoggedInType <= 0)
+            {
+                return RedirectToAction("ViewLogIn", "Home");
+            }
+            else
+            {
+                return View(user);
 
 
-        //    }
-        //}
+            }
+        }
 
-        //// POST: Users/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var user = await _context.User.FindAsync(id);
-        //    user.IsActive = 1;
+        // POST: Users/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var user = await _context.User.FindAsync(id);
+            user.IsActive = 0;
 
-        //    _context.User.Update(user);
+            _context.User.Update(user);
 
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction("Index", "Users");
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Users");
 
-        //}
+        }
 
-        //private bool UserExists(int id)
-        //{
-        //    return _context.User.Any(e => e.Id == id);
-        //}
+        private bool UserExists(int id)
+        {
+            return _context.User.Any(e => e.Id == id);
+        }
 
 
     }
