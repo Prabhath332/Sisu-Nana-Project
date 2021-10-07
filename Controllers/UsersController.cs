@@ -107,23 +107,14 @@ namespace web_project.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details (int id)
         {
          
                 return View();                       
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DetailsA(int id)
+        public async Task<IActionResult> DetailsA (int id)
         {
-
-           // var a = this.User;
-           // var user = await _context.User
-           //.FirstOrDefaultAsync(m => m.Id == id);
-           // if (user == null)
-           // {
-           //     return NotFound();
-           // }
-
             return View();
 
         }
@@ -137,14 +128,11 @@ namespace web_project.Controllers
             if (returnUrl != null)
             {
                 return RedirectToAction("ViewLogIn", "Home");
-
-              
             }
             else
             {
                 return View();
             }
-
         }
 
 
@@ -182,9 +170,8 @@ namespace web_project.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    
                 }
-
             }
 
             return View(user);
@@ -222,7 +209,6 @@ namespace web_project.Controllers
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                     return View(user);
-
                 }
                 catch (Exception ex)
                 {
@@ -232,8 +218,6 @@ namespace web_project.Controllers
             }
 
             return View( user);
-
-
         }
 
 

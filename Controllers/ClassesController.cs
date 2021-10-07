@@ -75,6 +75,7 @@ namespace web_project.Controllers
             }
             return View(@class);
         }
+
         // POST: Classes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -224,8 +225,6 @@ namespace web_project.Controllers
                 {
                     Console.WriteLine("The process failed: {0}", e.ToString());
                 }
-
-
                 uniqueFileName = Guid.NewGuid().ToString().Split("-").ElementAt(0) + "_" + File.FileName;
 
                 string filePath = Path.Combine(AppManage.requestimagePath, uniqueFileName);
