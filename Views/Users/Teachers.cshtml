@@ -9,14 +9,11 @@
 <div class="row">
     @foreach (var item in Model)
     {
-
         <div class="col-md-3">
-
             <form asp-action="AddToCart">
                 <td style="width:30px">
                     <img height="125" width="115" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
                     <br />
-
                     &nbsp @Html.DisplayFor(modelItem => item.UserName)
                     <br />
                     &nbsp  @Html.DisplayFor(modelItem => item.UserName) .00 LKR
@@ -27,10 +24,7 @@
                         <input style="width:110px ; " type="submit" value="Add" class="btn btn-primary" />
                     </div>
                 </td>
-
             </form>
         </div>
-
-
     }
 </div>

@@ -118,24 +118,19 @@ namespace web_project.Controllers
         }
 
         [Authorize]
+<<<<<<< HEAD
+        public async Task<IActionResult> Details (int id)
+=======
         public async Task<IActionResult> Profile()
+>>>>>>> 8a9bf9d7fc0be4a28fb718cbf9fc2602e3ba3494
         {
             int userId = AppManage.LoggedInUserId;
             var user = await _context.User.FindAsync();
              return View(user);                       
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DetailsA(int id)
+        public async Task<IActionResult> DetailsA (int id)
         {
-
-           // var a = this.User;
-           // var user = await _context.User
-           //.FirstOrDefaultAsync(m => m.Id == id);
-           // if (user == null)
-           // {
-           //     return NotFound();
-           // }
-
             return View();
 
         }
@@ -149,14 +144,11 @@ namespace web_project.Controllers
             if (returnUrl != null)
             {
                 return RedirectToAction("ViewLogIn", "Home");
-
-              
             }
             else
             {
                 return View();
             }
-
         }
 
 
@@ -194,9 +186,8 @@ namespace web_project.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    
                 }
-
             }
 
             return View(user);
@@ -234,7 +225,6 @@ namespace web_project.Controllers
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                     return View(user);
-
                 }
                 catch (Exception ex)
                 {
@@ -244,8 +234,6 @@ namespace web_project.Controllers
             }
 
             return View( user);
-
-
         }
 
 
