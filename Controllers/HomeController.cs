@@ -43,7 +43,8 @@ namespace web_project.Controllers
                 ViewBag.CurrentUserName = currentUser.UserName;
             }
             var messages = await _context.Messages.ToListAsync();
-            return View(messages);
+            ViewBag.data = messages;
+            return View();
         }
 
 

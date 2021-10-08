@@ -118,11 +118,8 @@ namespace web_project.Controllers
         }
 
         [Authorize]
-<<<<<<< HEAD
-        public async Task<IActionResult> Details (int id)
-=======
+      
         public async Task<IActionResult> Profile()
->>>>>>> 8a9bf9d7fc0be4a28fb718cbf9fc2602e3ba3494
         {
             int userId = AppManage.LoggedInUserId;
             var user = await _context.User.FindAsync();
