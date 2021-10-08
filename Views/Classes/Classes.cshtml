@@ -28,6 +28,23 @@
                     <div class="form-group" style="padding-top:0em">
                         <input style="width:110px ; " type="submit" value="Add" class="btn btn-primary" />
                     </div>
+                    @{
+                    
+                     var role = this.User.Claims.ElementAt(3).Value;
+                     if (role == "Studnet")
+                        {
+                            <div class="form-group" style="padding-top:0em">
+                                <input style="width:110px ; " href="@item.Url" type="submit" value="Join" class="btn btn-primary" />
+                            </div>
+
+                        }
+                        else if (role == "Admin")
+                        {
+                              <div class="form-group" style="padding-top:0em">
+                                <input onclick="location.href='@item.Url';" style="width:110px ; " type="submit" value="Start" class="btn btn-primary" />
+                            </div>
+                        }
+                    }
                   
                 </td>
 

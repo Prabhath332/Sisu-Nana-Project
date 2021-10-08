@@ -21,6 +21,8 @@ namespace web_project.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<UsersController> _logger;
+        private readonly web_projectContext _context;
+
 
         public UsersController(
             web_projectContext context,
@@ -36,7 +38,6 @@ namespace web_project.Controllers
         }
 
 
-        private readonly web_projectContext _context;
         public static int UserId = 0;
 
       
@@ -44,6 +45,7 @@ namespace web_project.Controllers
         {      
                 return View(await _context.User.ToListAsync());
         }
+
         public async Task<IActionResult> Teachers()
         {
            // List <User> users = new List<User>() 
@@ -51,10 +53,17 @@ namespace web_project.Controllers
         }
         public async Task<IActionResult> Students()
         {
-            // List <User> users = new List<User>() 
-           var role =  this.User.Claims.ElementAt(3).Value;
+            List<RegistedStudent> registedStudents = new List<RegistedStudent>();
+            var role =  this.User.Claims.ElementAt(3).Value;
+            var class1 = await _context.Class.Where(a => a.Teacher == this.User.Identity.Name).ToListAsync();
 
-            return View(await _context.User.Where(a => a.UserTypeId == "1").ToListAsync());
+            class1.ForEach(a =>
+            {
+                var res = _context.RegistedStudent.Where(a => a.ClassId == a.Id).ToList();
+                registedStudents.AddRange(res);
+            });
+
+            return View(registedStudents.Select(a=>a.User));
         }
 
        
@@ -78,7 +87,7 @@ namespace web_project.Controllers
         }
         public IActionResult CreateTeacher()
         {
-            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Id");
+            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Name");
             return View();
         }
         public IActionResult CreateStudent()
@@ -93,8 +102,8 @@ namespace web_project.Controllers
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-               var loggedinUser  = await _context.User.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefaultAsync();
-                AppManage.LoggedInUserId = loggedinUser.Id;
+             //  var loggedinUser  = await _context.User.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefaultAsync();
+             //   AppManage.LoggedInUserId = loggedinUser.Id;
                 _logger.LogInformation("User logged in.");
                 return RedirectToAction("Index", "Home");              
             }
@@ -153,7 +162,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTeachar([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateTeacher([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
         {
           string  returnUrl = Url.Content("~/");
 

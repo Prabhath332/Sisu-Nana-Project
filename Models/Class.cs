@@ -10,6 +10,7 @@ namespace web_project.Models
     {
         public int Id { get; set; }
         public string Teacher { get; set; }
+        public string Url { get; set; }
         public int Grade { get; set; }
         public string Subject { get; set; }
 

@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using web_project.Data;
+using web_project.Hubs;
 
 namespace web_project
 {
@@ -45,6 +46,7 @@ namespace web_project
                     options.UseSqlServer(Configuration.GetConnectionString("web_projectContext")));
             //  services.AddDbContext<web_projectContext>(options =>
             //options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
+            services.AddSignalR();
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<web_projectContext>();
         }
@@ -69,7 +71,10 @@ namespace web_project
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/Home/Index");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

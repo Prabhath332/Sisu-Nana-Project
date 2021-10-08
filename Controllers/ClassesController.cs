@@ -26,6 +26,11 @@ namespace web_project.Controllers
             var web_projectContext = _context.Class;
             return View(await web_projectContext.ToListAsync());
         }
+        public async Task<IActionResult> Materials()
+        {
+          
+            return View();
+        }
         public async Task<IActionResult> Classes()
         {
             var web_projectContext = _context.Class;
@@ -65,7 +70,7 @@ namespace web_project.Controllers
             if (ModelState.IsValid)
             {
                 RegistedStudent registedStudent = new RegistedStudent();
-                registedStudent.ClassId = @class.Id;
+                registedStudent.ClassId = @class.Id;               
                 var user = _context.User.Where(a => a.UserName == this.User.Identity.Name);
                 registedStudent.UserId = user.FirstOrDefault().Id;        
                 _context.Add(registedStudent);
@@ -79,7 +84,7 @@ namespace web_project.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Advertiesment,UserId,Grade,Subject,Date,Time")] Class @class)
+        public async Task<IActionResult> Create([Bind("Id,Advertiesment,Url,UserId,Grade,Subject,Date,Time")] Class @class)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +98,7 @@ namespace web_project.Controllers
             return View(@class);
         }
 
-        public async Task<IActionResult> Register([Bind("Id,Advertiesment,UserId,Grade,Subject,Date,Time")] Class @class)
+        public async Task<IActionResult> Register([Bind("Id,Advertiesment,Url,UserId,Grade,Subject,Date,Time")] Class @class)
         {
             if (ModelState.IsValid)
             {

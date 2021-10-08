@@ -59,6 +59,7 @@ namespace web_project.Data
 
           
             builder.ApplyConfiguration(new UserSeed());
+            builder.ApplyConfiguration(new BankSeed());
             builder.ApplyConfiguration(new RoleSeed());
             builder.ApplyConfiguration(new UserRoleSeed());
          
@@ -66,17 +67,38 @@ namespace web_project.Data
         }
 
         public DbSet<web_project.Models.Class> Class { get; set; }
+        public DbSet<web_project.Models.Message> Messages { get; set; }
+
 
         public DbSet<web_project.Models.RegistedStudent> RegistedStudent { get; set; }
 
         public DbSet<web_project.Models.User> User { get; set; }
 
+        public DbSet<web_project.Models.Contact> Contact { get; set; }
+
 
 
     }
+    public class BankSeed : IEntityTypeConfiguration<Bank>
+    {
+        public void Configure(EntityTypeBuilder<Bank> builder)
+        {
+            builder.ToTable("Bank");
+
+            builder.HasData
+            (
+                 
+                 new Bank
+                 {
+                     Id = 1,
+                     Name = "AAA",
+                 }
+            );
+        }
+    }
 
 
-  
+
     public class UserSeed : IEntityTypeConfiguration<IdentityUser>
     {
         public void Configure(EntityTypeBuilder<IdentityUser> builder)
