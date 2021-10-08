@@ -94,7 +94,7 @@ namespace web_project.Controllers
             if (result.Succeeded)
             {
                var loggedinUser  = await _context.User.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefaultAsync();
-                AppManage.LoggedInUserId = loggedinUser.Id;
+             //   AppManage.LoggedInUserId = loggedinUser.Id;
                 _logger.LogInformation("User logged in.");
                 return RedirectToAction("Index", "Home");              
             }
@@ -108,12 +108,8 @@ namespace web_project.Controllers
 
         }
 
-        [Authorize]
-<<<<<<< HEAD
-        public async Task<IActionResult> Details (int id)
-=======
+       
         public async Task<IActionResult> Profile()
->>>>>>> 8a9bf9d7fc0be4a28fb718cbf9fc2602e3ba3494
         {
             int userId = AppManage.LoggedInUserId;
             var user = await _context.User.FindAsync();

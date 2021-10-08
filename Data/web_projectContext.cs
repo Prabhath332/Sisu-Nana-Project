@@ -22,13 +22,6 @@ namespace web_project.Data
             _httpContextAccessor = httpContextAccessor;
         }
 
-          
-
-
-        
-
-
-
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var user = _httpContextAccessor.HttpContext.User;
@@ -49,7 +42,6 @@ namespace web_project.Data
         }
         public override int SaveChanges()
         {
-
             return base.SaveChanges();
         }
 
@@ -70,13 +62,8 @@ namespace web_project.Data
         public DbSet<web_project.Models.RegistedStudent> RegistedStudent { get; set; }
 
         public DbSet<web_project.Models.User> User { get; set; }
-
-
-
     }
 
-
-  
     public class UserSeed : IEntityTypeConfiguration<IdentityUser>
     {
         public void Configure(EntityTypeBuilder<IdentityUser> builder)
