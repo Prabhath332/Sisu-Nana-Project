@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_project.Data;
 
 namespace web_project.Migrations
 {
     [DbContext(typeof(web_projectContext))]
-    partial class web_projectContextModelSnapshot : ModelSnapshot
+    [Migration("20211008181029_url")]
+    partial class url
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,15 +161,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54a5bddb-b38e-438d-833f-44e578cc0394",
+                            ConcurrencyStamp = "b415d169-9792-49ec-b684-833d8cd4c71b",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHaYvYBY409H2xuWB/DORlGIrWXYCMyGUMpY3TqnxZpA5z9fzbEU+6CAGVnxeP5BYA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBJKK52mE3odi0z9APzZG+XIZIqOQmk9ryWLMv+i24Jhf5nUOZLO/kOwX89oyDWCgQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bf90bbc1-3419-4c3a-9f7c-c11af8c0d3f4",
+                            SecurityStamp = "5bd536de-2f9e-4237-a796-69bfea61060b",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -339,37 +341,6 @@ namespace web_project.Migrations
                     b.ToTable("Contact");
                 });
 
-            modelBuilder.Entity("web_project.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("SenderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("When")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("web_project.Models.RegistedStudent", b =>
                 {
                     b.Property<int>("Id")
@@ -504,13 +475,6 @@ namespace web_project.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("web_project.Models.Message", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId");
                 });
 
             modelBuilder.Entity("web_project.Models.RegistedStudent", b =>

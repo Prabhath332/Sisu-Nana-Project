@@ -21,6 +21,8 @@ namespace web_project.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<UsersController> _logger;
+        private readonly web_projectContext _context;
+
 
         public UsersController(
             web_projectContext context,
@@ -36,7 +38,6 @@ namespace web_project.Controllers
         }
 
 
-        private readonly web_projectContext _context;
         public static int UserId = 0;
 
       
@@ -44,6 +45,7 @@ namespace web_project.Controllers
         {      
                 return View(await _context.User.ToListAsync());
         }
+
         public async Task<IActionResult> Teachers()
         {
            // List <User> users = new List<User>() 
@@ -51,10 +53,17 @@ namespace web_project.Controllers
         }
         public async Task<IActionResult> Students()
         {
-            // List <User> users = new List<User>() 
-           var role =  this.User.Claims.ElementAt(3).Value;
+            List<RegistedStudent> registedStudents = new List<RegistedStudent>();
+            var role =  this.User.Claims.ElementAt(3).Value;
+            var class1 = await _context.Class.Where(a => a.Teacher == this.User.Identity.Name).ToListAsync();
 
-            return View(await _context.User.Where(a => a.UserTypeId == "1").ToListAsync());
+            class1.ForEach(a =>
+            {
+                var res = _context.RegistedStudent.Where(a => a.ClassId == a.Id).ToList();
+                registedStudents.AddRange(res);
+            });
+
+            return View(registedStudents.Select(a=>a.User));
         }
 
        
@@ -78,7 +87,7 @@ namespace web_project.Controllers
         }
         public IActionResult CreateTeacher()
         {
-            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Id");
+            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Name");
             return View();
         }
         public IActionResult CreateStudent()
@@ -93,8 +102,11 @@ namespace web_project.Controllers
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
+
                var loggedinUser  = await _context.User.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefaultAsync();
-             //   AppManage.LoggedInUserId = loggedinUser.Id;
+
+
+           //   AppManage.LoggedInUserId = loggedinUser.Id;
                 _logger.LogInformation("User logged in.");
                 return RedirectToAction("Index", "Home");              
             }
@@ -103,12 +115,13 @@ namespace web_project.Controllers
                 AppManage.ErrorMsg = "Invalid LogIn";
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return RedirectToAction("ViewLogIn", "Home", user);
-
             }
 
         }
 
-       
+
+        [Authorize]
+      
         public async Task<IActionResult> Profile()
         {
             int userId = AppManage.LoggedInUserId;
@@ -119,7 +132,6 @@ namespace web_project.Controllers
         public async Task<IActionResult> DetailsA (int id)
         {
             return View();
-
         }
 
 
@@ -141,7 +153,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTeachar([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
+        public async Task<IActionResult> CreateTeacher([Bind("Id, ConfirmPassword,UserName, Password, TelephoneNo, FirstName, LastName, UserTypeId, IsActive, Email, Image, Nic, Grade, BankId, Branch, AccountNo, AccountName")] User user)
         {
           string  returnUrl = Url.Content("~/");
 
@@ -149,20 +161,19 @@ namespace web_project.Controllers
             {
                 try
                 {
-                
                     var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email  };
                     
                     var result = await _userManager.CreateAsync(IdentityUser, user.Password);
                     if (result.Succeeded)
                     {
-                      
-                       await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
+                        await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
                         _logger.LogInformation("User created a new account with password.");
                         user.UserTypeId = "2";
                         _context.Add(user);
                         await  _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                         return LocalRedirect(returnUrl);
+
                     }
                     foreach (var error in result.Errors)
                     {
@@ -178,9 +189,9 @@ namespace web_project.Controllers
             }
 
             return View(user);
-
-
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,ConfirmPassword,Email,Image,Nic,Grade,BankId,Branch,AccountNo,AccountName")] User user)
@@ -195,8 +206,7 @@ namespace web_project.Controllers
 
                     var result = await _userManager.CreateAsync(IdentityUser, user.Password);
                     if (result.Succeeded)
-                    {
-                                                                         
+                    {                                          
                         await _userManager.AddToRoleAsync(IdentityUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
                         user.UserTypeId = "3";
@@ -205,7 +215,6 @@ namespace web_project.Controllers
                         
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
                         return RedirectToAction("Index", "Home");
-
                     }
                     foreach (var error in result.Errors)
                     {
@@ -217,9 +226,7 @@ namespace web_project.Controllers
                 {
 
                 }
-
             }
-
             return View( user);
         }
 
@@ -229,13 +236,12 @@ namespace web_project.Controllers
            
             //var user = await _context.User.FindAsync(id);
             //if (user == null)
-            //{
 
+            //{
             //    return RedirectToAction("ViewLogIn", "Home");
             //}
             return View();
         }
-
 
 
         [HttpPost]
@@ -261,11 +267,8 @@ namespace web_project.Controllers
                 {
                     
                 }
-
-
             }
             return RedirectToAction("Index", "Users");
-
         }
 
 
@@ -275,14 +278,12 @@ namespace web_project.Controllers
             {
                 return NotFound();
             }
-
             var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
-
             if (AppManage.LoggedInType <= 0)
             {
                 return RedirectToAction("ViewLogIn", "Home");
@@ -290,8 +291,6 @@ namespace web_project.Controllers
             else
             {
                 return View(user);
-
-
             }
         }
 
@@ -304,10 +303,8 @@ namespace web_project.Controllers
             user.IsActive = 0;
 
             _context.User.Update(user);
-
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Users");
-
         }
 
         private bool UserExists(int id)
