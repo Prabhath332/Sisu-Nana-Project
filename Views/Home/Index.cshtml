@@ -17,8 +17,6 @@
     <meta http-equiv='pragma' content='no-cache'>
 
     <script src="filename.js?version = 2.1"></script>
-
-
     <title>E-Learning system </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,7 +36,6 @@
 <body class="landing">
     <!-- Header nav bar -->
     <header id="header" class="alt">
-        <h2><strong><a asp-controller="Home" asp-action="Index"> Home </a></strong> </h2>
         <nav id="nav">
             <ul>
                 @{
@@ -49,35 +46,32 @@
                         if (role == "Admin")
 
                         {
-                            
-                            <li><a asp-action="Index" asp-controller="Contacts">Contacts</a></li>
                             <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
                             <li><a asp-action="Students" asp-controller="Users">Students</a></li>
-
-                            <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
-
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
                         }
+
                         else if (role == "Student")
                         {
                             <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
-
-                            <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
-
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a href="#four">Masseges</a></li>
                         }
                         else if (role == "Teacher")
                         {
-                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
                             <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a href="#four">Masseges</a></li>
                         }
-                        <li><a asp-action="Materials" asp-controller="Classes">Materials</a></li>
-
                         <li>
                             <a asp-action="Profile" asp-controller="Users">
-                                <i class='fas fa-user' style='font-size:17px'></i>&nbsp;@this.User.Identity.Name
+                                <i class='fas fa-user' style='font-size:15px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
                             </a>
                         </li>
                         <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
@@ -98,7 +92,7 @@
 
     <!-- Banner -->
     <section id="banner" style="height:450px">
-        <h2>සිසු නැණ අද්‍යාපනික වෙබ් අඩවිය</h2>
+        <h2>"සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය"</h2> 
         <p> </p>
         <ul class="actions">
             <li><a asp-controller="Home" asp-action="Index" class="button special big">Class Advertisements</a></li>
@@ -107,11 +101,13 @@
 
 
     <!-- Three -->
-    <section id="three" class="wrapper style1">
+    <section id="one" class="wrapper style1">
         <div class="container">
             <center>
                 <header class="major special">
-                    <font face="Forte" size="25" color="Black">Start your journey to a better life with online Teaching</font>
+                    
+                    <font face="Forte" size="25" color="Black">Professional Teachers</font>
+                    <p>Start your journey to a better life with online Teaching</p>
                 </header>
             </center>
 
@@ -167,19 +163,21 @@
 
 
     <!-- Banner -->
-    <section id="banner">
-        <font face="Forte" size="25" color="White"> Textbooks, Books, Links & Educational Martials </font>
-        <p> "Libraries store the energy that fuels the imagination.<br /> They open up windows to the world and inspire us to explore and achieve, <br />and contribute to improving our quality of life."<br /></p>
-        <p>[Sidney Sheldon]</p>
+    <section id="Materials">
+        <section id="banner">
+            <font face="Forte" size="25" color="White"> Textbooks, Books, Links & Educational Martials </font>
+            <p> "Libraries store the energy that fuels the imagination.<br /> They open up windows to the world and inspire us to explore and achieve, <br />and contribute to improving our quality of life."<br /></p>
+            <p>[Sidney Sheldon]</p>
 
-        <ul class="actions">
-            <li><a asp-controller="Users" asp-action="CreateUser" class="button special big">Books & Library</a></li>
-        </ul>
+            <ul class="actions">
+                <li><a asp-action="Materials" asp-controller="Classes" class="button special big">Books & Library</a></li>
+            </ul>
+        </section>
     </section>
 
 
-    <!-- One -->
-    <section id="one" class="wrapper style2 special">
+    <!-- Student Chat -->
+    <section id="two" class="wrapper style2 special">
         <div class="feature">
             <header class="major special">
 
@@ -188,55 +186,57 @@
                 </font>
                 <p>Share your thoughts with each other</p>
             </header>
-            <div class="row">
-                <div class="col-md-12" id="chat">
-                    @if (Model != null)
-                    {
-                        @foreach (var message in @ViewBag.data)
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" id="chat">
+                        @if (Model != null)
                         {
-                            string containerClass, timePosition, textAlign, contcolor, offset;
-                            if (userName == message.UserName)
+                            @foreach (var message in @ViewBag.data)
                             {
-                                containerClass = "container darker";
-                                timePosition = "time-right text-light";
-                                textAlign = "text-right text-white";
-                                contcolor = "bg-primary";
-                                offset = "col-md-6 offset-md-6";
-                            }
-                            else
-                            {
-                                containerClass = "container";
-                                timePosition = "time-left";
-                                textAlign = "text-left";
-                                contcolor = "bg-light";
-                                offset = "";
-                            }
+                                string containerClass, timePosition, textAlign, contcolor, offset;
+                                if (userName == message.UserName)
+                                {
+                                    containerClass = "container darker";
+                                    timePosition = "time-right text-light";
+                                    textAlign = "text-right text-white";
+                                    contcolor = "bg-primary";
+                                    offset = "col-md-6 offset-md-6";
+                                }
+                                else
+                                {
+                                    containerClass = "container";
+                                    timePosition = "time-left";
+                                    textAlign = "text-left";
+                                    contcolor = "bg-light";
+                                    offset = "";
+                                }
 
-                            <div class="row">
-                                <div class="@offset">
-                                    <div class="@containerClass @contcolor">
+                                <div class="row">
+                                    <div class="@offset">
+                                        <div class="@containerClass @contcolor">
 
-                                        <p class="sender @textAlign">@message.UserName</p>
-                                        <p class="@textAlign">@message.Text</p>
-                                        <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
+                                            <p class="sender @textAlign">@message.UserName</p>
+                                            <p class="@textAlign">@message.Text</p>
+                                            <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>}}
-                </div>
-                <div class="col-md-12">
-                    <form asp-action="Create"
-                          data-ajax-begin="clearInputField" data-ajax-complete=""
-                          data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
-                          data-ajax="true" data-ajax-method="POST">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group">
-                            <input name="Text" class="form-control" id="messageText" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Send" id="submitButton" class="btn btn-outline-primary btn-block" />
-                        </div>
-                        <input type="hidden" value="@userName" name="username" />
-                    </form>
+                                </div>}}
+                    </div>
+                    <div class="col-md-12">
+                        <form asp-action="Create"
+                              data-ajax-begin="clearInputField" data-ajax-complete=""
+                              data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
+                              data-ajax="true" data-ajax-method="POST">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <input name="Text" class="form-control" id="messageText" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Send" id="submitButton" class="btn btn-outline-primary btn-block" />
+                            </div>
+                            <input type="hidden" value="@userName" name="username" />
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,9 +245,9 @@
 
 
 
-    <!-- Two -->
+    <!-- Populer Classes -->
 
-    <section id="two" class="wrapper style2 special">
+    <section id="three" class="wrapper style2 special">
         <div class="feature">
             <div class="major special">
                 <font face="Forte" size="25" color="Black">
@@ -315,7 +315,7 @@
 
 
 
-    <!-- Four -->
+    <!-- Message -->
     <section id="four" class="wrapper style3 special">
         <div class="container contact-form">
             <form enctype="multipart/form-data" asp-controller="Contacts" asp-action="Create">
@@ -328,21 +328,21 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <input type="text" asp-for="Name"  class="form-control" placeholder="Your Name *" value="" />
+                            <input type="text" asp-for="Name" class="form-control" placeholder="Your Name *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                            <input type="text" asp-for="Email" class="form-control" placeholder="Your Email *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text"  class="form-control" placeholder="Your Phone Number *" value="" />
+                            <input type="text" asp-for="Mobile" class="form-control" placeholder="Your Mobile *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="submit"  class="btnContact" value="Send Message" />
+                            <input type="submit" class="btnContact" value="Send Message" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                            <textarea class="form-control" asp-for="Message" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -353,42 +353,6 @@
 
     <!-- Footer -->
     <footer class="page-footer font-small blue-grey lighten-5">
-
-        <div style="background-color: #21d192;">
-            <div class="container">
-                <div class="row py-4 d-flex align-items-center">
-                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                        <h6 class="mb-0">Get connected with us on social networks!</h6>
-                    </div>
-                    <div class="col-md-6 col-lg-7 text-center text-md-right">
-
-                        <!-- Facebook -->
-                        <a class="fb-ic">
-                            <i class="fab fa-facebook-f white-text mr-4"> </i>
-                        </a>
-                        <!-- Twitter -->
-                        <a class="tw-ic">
-                            <i class="fab fa-twitter white-text mr-4"> </i>
-                        </a>
-                        <!-- Google +-->
-                        <a class="gplus-ic">
-                            <i class="fab fa-google-plus-g white-text mr-4"> </i>
-                        </a>
-                        <!--Linkedin -->
-                        <a class="li-ic">
-                            <i class="fab fa-linkedin-in white-text mr-4"> </i>
-                        </a>
-                        <!--Instagram-->
-                        <a class="ins-ic">
-                            <i class="fab fa-instagram white-text"> </i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
 
         <div class="container text-center text-md-left mt-5">
             <div class="row mt-3 dark-grey-text">

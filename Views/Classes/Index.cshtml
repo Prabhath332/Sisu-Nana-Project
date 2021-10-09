@@ -99,65 +99,61 @@
 
     </head>
 
+
     <body>
         <!-- Header nav bar -->
         <div id="grad1">
             
             <header id="header" class="alt">
 
-                <nav id="nav">
-                    <ul>
-                        @{
-                            if (this.User.Identity.IsAuthenticated)
-                            {
-                                var role = this.User.Claims.ElementAt(3).Value;
-
-                                if (role == "Admin")
-
+                    <nav id="nav">
+                        <ul>
+                            @{
+                                if (this.User.Identity.IsAuthenticated)
                                 {
-                                    <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
-                                    <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                                    <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                                    <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                    var role = this.User.Claims.ElementAt(3).Value;
 
-                                    <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                                    if (role == "Admin")
+
+                                    {
+                                        <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                                        <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                        <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                        <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                                    }
+                                    else if (role == "Student")
+                                    {
+                                        <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                        <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
+                                        <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                        <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                        <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                                    }
+                                    else if (role == "Teacher")
+                                    {
+                                        <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                        <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                        <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                                        <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                        <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                                    }
+                                    <li>
+                                        <a asp-action="Profile" asp-controller="Users">
+                                            <i class='fas fa-user' style='font-size:17px'></i>&nbsp;@this.User.Identity.Name
+                                        </a>
+                                    </li>
+                                    <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
                                 }
-                                else if (role == "Student")
+                                else
                                 {
-                                    <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
-                                    <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
-                                    <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                                    <li><a asp-action="Students" asp-controller="Users">Students</a></li>
-
-                                    <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                                    <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                                    <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                                    <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
                                 }
-                                else if (role == "Teacher")
-                                {
-                                    <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
-                                    <li><a asp-action="Students" asp-controller="Users">Students</a></li>
-
-                                    <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
-                                    <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                                    <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
-                                }
-                                <li>
-                                    <a asp-action="Profile" asp-controller="Users">
-                                        <i class='fas fa-user' style='font-size:17px'></i>&nbsp;@this.User.Identity.Name
-                                    </a>
-                                </li>
-                                <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
                             }
-                            else
-                            {
+                        </ul>
 
-                                <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
-                                <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
-                                <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
-                            }
-                        }
-                    </ul>
-
-                </nav>
+                    </nav>
             </header>
             <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
@@ -166,7 +162,7 @@
             <section id="three" class="wrapper style1">
                 <div class="container">
                     <p>
-                        <a asp-action="Create">Create New</a>
+                        <a asp-action="Create">Add New Class Details</a>
                     </p>
                     <table class="table">
                         <thead>

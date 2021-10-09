@@ -129,6 +129,7 @@ namespace web_project.Controllers
              return View(user);                       
         }
         [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DetailsA (int id)
         {
             return View();
