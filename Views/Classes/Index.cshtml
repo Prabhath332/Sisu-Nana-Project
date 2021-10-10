@@ -55,9 +55,9 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
-    }
-        </tbody>
-    </table>*@
+  }
+         </tbody>
+    </table> *@
 
 
 
@@ -96,7 +96,6 @@
                 background-image: linear-gradient(white, black);
                    }
         </style>
-
     </head>
 
 
@@ -131,7 +130,7 @@
                                     }
                                     else if (role == "Teacher")
                                     {
-                                        <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                        <li><a asp-controller="Home" asp-action="Index"> Home </a> </li>
                                         <li><a asp-action="Students" asp-controller="Users">Students</a></li>
                                         <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
                                         <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
@@ -219,9 +218,7 @@
                     </table>
                 </div>
             </section>
-
                </div>
-
     </body>
 </html>
 

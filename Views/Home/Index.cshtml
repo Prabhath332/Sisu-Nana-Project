@@ -1,13 +1,15 @@
 ﻿@model web_project.Models.Contact
-@{ 
+
+@{
     var userName = User.Identity.Name;
 }
 
 <!DOCTYPE HTML>
-<!--
 
+<!--
     Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
+
 <html>
 
 <head>
@@ -16,22 +18,26 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
 
+
     <script src="filename.js?version = 2.1"></script>
     <title>E-Learning system </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
+
     <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
+
+
 
 <body class="landing">
     <!-- Header nav bar -->
@@ -53,7 +59,6 @@
                             <li><a href="#Materials">Materials</a></li>
                             <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
                         }
-
                         else if (role == "Student")
                         {
                             <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
@@ -78,6 +83,7 @@
                     }
                     else
                     {
+                        <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
                         <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
                         <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
                         <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
@@ -92,7 +98,7 @@
 
     <!-- Banner -->
     <section id="banner" style="height:450px">
-        <h2>"සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය"</h2> 
+        <h2>"සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය"</h2>
         <p> </p>
         <ul class="actions">
             <li><a asp-controller="Home" asp-action="Index" class="button special big">Class Advertisements</a></li>
@@ -105,7 +111,7 @@
         <div class="container">
             <center>
                 <header class="major special">
-                    
+
                     <font face="Forte" size="25" color="Black">Professional Teachers</font>
                     <p>Start your journey to a better life with online Teaching</p>
                 </header>
@@ -187,57 +193,80 @@
                 <p>Share your thoughts with each other</p>
             </header>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12" id="chat">
-                        @if (Model != null)
-                        {
-                            @foreach (var message in @ViewBag.data)
+
+
+
+
+
+
+                @*<div class="jumbotron bg-light">
+                    <h2 class="text-center text-primary">
+                        <i class="fab fa-facebook-messenger"></i>&nbsp; Public Talk
+                    </h2>
+
+                    <div class="row">
+                        <div class="col-md-12" id="chat">
+                            @if (Model != null)
                             {
-                                string containerClass, timePosition, textAlign, contcolor, offset;
-                                if (userName == message.UserName)
+                                @foreach (var Message in Model.OrderBy(m => m.When))
                                 {
-                                    containerClass = "container darker";
-                                    timePosition = "time-right text-light";
-                                    textAlign = "text-right text-white";
-                                    contcolor = "bg-primary";
-                                    offset = "col-md-6 offset-md-6";
-                                }
-                                else
-                                {
-                                    containerClass = "container";
-                                    timePosition = "time-left";
-                                    textAlign = "text-left";
-                                    contcolor = "bg-light";
-                                    offset = "";
-                                }
+                                    string containerClass, timePosition, textAlign, contcolor, offset;
+                                    if (userName == Message.UserName)
+                                    {
+                                        containerClass = "container darker";
+                                        timePosition = "time-right text-light";
+                                        textAlign = "text-right text-white";
+                                        contcolor = "bg-primary";
+                                        offset = "col-md-6 offset-md-6";
+                                    }
+                                    else
+                                    {
+                                        containerClass = "container";
+                                        timePosition = "time-left";
+                                        textAlign = "text-left";
+                                        contcolor = "bg-light";
+                                        offset = "";
+                                    }
 
-                                <div class="row">
-                                    <div class="@offset">
-                                        <div class="@containerClass @contcolor">
+                                    <div class="row">
+                                        <div class="@offset">
+                                            <div class="@containerClass @contcolor">
 
-                                            <p class="sender @textAlign">@message.UserName</p>
-                                            <p class="@textAlign">@message.Text</p>
-                                            <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
+                                                <p class="sender @textAlign">@message.UserName</p>
+                                                <p class="@textAlign">@message.Text</p>
+                                                <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>}}
+                                    </div>}}
+                        </div>
+                        <div class="col-md-12">
+                            <form asp-action="Create"
+                                  data-ajax-begin="clearInputField" data-ajax-complete=""
+                                  data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
+                                  data-ajax="true" data-ajax-method="POST">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <input name="Text" class="form-control" id="messageText" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Send" id="submitButton" class="btn btn-outline-primary btn-block" />
+                                </div>
+                                <input type="hidden" value="@userName" name="username" />
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <form asp-action="Create"
-                              data-ajax-begin="clearInputField" data-ajax-complete=""
-                              data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
-                              data-ajax="true" data-ajax-method="POST">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <input name="Text" class="form-control" id="messageText" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Send" id="submitButton" class="btn btn-outline-primary btn-block" />
-                            </div>
-                            <input type="hidden" value="@userName" name="username" />
-                        </form>
-                    </div>
+
                 </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <script>
+        const userName = "@ViewBag.CurrentUserName";
+                    </script>
+                }*@
+
+
+
+
             </div>
         </div>
     </section>

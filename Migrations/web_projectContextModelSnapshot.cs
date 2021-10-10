@@ -159,15 +159,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c642cb7-4590-42d0-8e53-2c2ed65b853d",
+                            ConcurrencyStamp = "4dd108a0-b180-482a-8dfb-c90fb21ec0fe",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAENR7haRhhVY1xOlf5W+2v+uNON8Dh9UfXob2/9tgRhNVQcywq85n+EdzcqvUTsbReQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG8bjO4pxdRXTatW3N3W7yjkr3oJ2xCzGRYf0KHDIVug3ilbIA1SrX5TvlcYFi2+xA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4807ccf5-1536-4e71-bd13-397f097009ae",
+                            SecurityStamp = "64b9ad2e-f782-4d74-b85e-cebbb6ba9c6c",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -322,7 +322,7 @@ namespace web_project.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 10,
                             Name = "DFCC Bank"
                         });
                 });

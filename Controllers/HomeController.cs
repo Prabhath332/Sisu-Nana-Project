@@ -30,13 +30,8 @@ namespace web_project.Controllers
         }
 
        
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         public async Task<IActionResult> Index()
         {
-            //return View();
             var currentUser = await _userManager.GetUserAsync(User);
             if (User.Identity.IsAuthenticated)
             {
