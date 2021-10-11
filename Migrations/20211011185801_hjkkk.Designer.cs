@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_project.Data;
 
 namespace web_project.Migrations
 {
     [DbContext(typeof(web_projectContext))]
-    partial class web_projectContextModelSnapshot : ModelSnapshot
+    [Migration("20211011185801_hjkkk")]
+    partial class hjkkk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,22 +52,19 @@ namespace web_project.Migrations
                         {
                             Id = "1",
                             ConcurrencyStamp = "1",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
+                            Name = "Admin"
                         },
                         new
                         {
                             Id = "2",
                             ConcurrencyStamp = "2",
-                            Name = "Teacher",
-                            NormalizedName = "Teacher"
+                            Name = "Teacher"
                         },
                         new
                         {
                             Id = "3",
                             ConcurrencyStamp = "2",
-                            Name = "Student",
-                            NormalizedName = "Student"
+                            Name = "Student"
                         });
                 });
 
@@ -162,15 +161,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "75d1f25b-4668-4223-b655-0224efb91bb7",
+                            ConcurrencyStamp = "3b235075-4a69-4a11-9baf-5fa94de77d2b",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHgGz6lwQkzqR0ITsEUrtnFynHv2phCMm3vuyItJwQ9dxL/r5Zlvhj7H76pUwOCvIw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELT6CICGU4jcRxGRy6OHVdAEGcxGJ1AkZbm5AMA2lIb05YKQmQKoDMpqNM0vUj4tQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "de5e7324-f53c-41d7-91cf-5a0a08bac090",
+                            SecurityStamp = "f99fbca8-ed48-46ff-ba77-944cae819f65",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
