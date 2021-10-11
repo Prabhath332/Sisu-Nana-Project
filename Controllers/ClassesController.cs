@@ -26,6 +26,7 @@ namespace web_project.Controllers
             var web_projectContext = _context.Class;
             return View(await web_projectContext.ToListAsync());
         }
+
         public async Task<IActionResult> Materials()
         {
           

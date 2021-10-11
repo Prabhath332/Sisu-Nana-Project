@@ -22,13 +22,6 @@ namespace web_project.Data
             _httpContextAccessor = httpContextAccessor;
         }
 
-          
-
-
-        
-
-
-
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var user = _httpContextAccessor.HttpContext.User;
@@ -49,7 +42,6 @@ namespace web_project.Data
         }
         public override int SaveChanges()
         {
-
             return base.SaveChanges();
         }
 
@@ -74,9 +66,8 @@ namespace web_project.Data
 
         public DbSet<web_project.Models.User> User { get; set; }
 
+
         public DbSet<web_project.Models.Contact> Contact { get; set; }
-
-
 
     }
     public class BankSeed : IEntityTypeConfiguration<Bank>
@@ -87,13 +78,58 @@ namespace web_project.Data
 
             builder.HasData
             (
-                 
+
                  new Bank
                  {
                      Id = 1,
-                     Name = "AAA",
-                 }
-            );
+                     Name = "Commercial Bank of Ceylon",
+                 },
+                                  new Bank
+                                  {
+                                      Id = 2,
+                                      Name = "Sampath Bank Plc",
+                                  },
+                                                   new Bank
+                                                   {
+                                                       Id = 3,
+                                                       Name = "National Savings Bank",
+                                                   },
+                             new Bank
+                             {
+                                 Id = 4,
+                                 Name = "People’s Bank",
+                             },
+                                              new Bank
+                                              {
+                                                  Id = 5,
+                                                  Name = "Hatton National Bank",
+                                              },
+                                                               new Bank
+                                                               {
+                                                                   Id = 6,
+                                                                   Name = "Seylan Bank Plc",
+                                                               },
+                                                                                new Bank
+                                                                                {
+                                                                                    Id = 7,
+                                                                                    Name = "National Development Bank Plc",
+                                                                                },
+                                  new Bank
+                                  {
+                                      Id = 8,
+                                      Name = "Amana Bank",
+                                  },
+                                                   new Bank
+                                                   {
+                                                       Id = 9,
+                                                       Name = "Nations Trust Bank Plc",
+                                                   },
+                                                               new Bank
+                                                               {
+                                                                   Id = 10,
+                                                                   Name = "DFCC Bank",
+                                                               }
+                                                               );
         }
     }
 
