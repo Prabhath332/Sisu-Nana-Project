@@ -57,7 +57,8 @@ namespace web_project.Controllers
                 message.UserID = sender.Id;
                 await _context.Messages.AddAsync(message);
                 await _context.SaveChangesAsync();
-                return Ok();
+                return RedirectToAction(nameof(Index));
+
             }
             return Error();
         }

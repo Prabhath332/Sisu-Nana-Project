@@ -189,7 +189,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" id="chat">
-                        @if (Model != null)
+                        @if (@ViewBag.data != null)
                         {
                             @foreach (var message in @ViewBag.data)
                             {
@@ -220,7 +220,10 @@
                                             <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
                                         </div>
                                     </div>
-                                </div>}}
+                                </div>
+                            }
+                        }
+
                     </div>
                     <div class="col-md-12">
                         <form asp-action="Create"
