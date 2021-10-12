@@ -22,7 +22,7 @@ namespace web_project.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
+        [Required]
         [DataType(DataType.Password)]
         [Compare("Password")]
         [NotMapped]

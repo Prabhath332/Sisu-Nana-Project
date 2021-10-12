@@ -180,7 +180,7 @@ namespace web_project.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ViewLogIn", "Home");
                    
                 }
                 catch (Exception ex)
@@ -215,7 +215,7 @@ namespace web_project.Controllers
                         await _context.SaveChangesAsync();
                         
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ViewLogIn", "Home");
                     }
                     foreach (var error in result.Errors)
                     {
@@ -228,7 +228,7 @@ namespace web_project.Controllers
 
                 }
             }
-            return View( user);
+            return View(  );
         }
 
 
