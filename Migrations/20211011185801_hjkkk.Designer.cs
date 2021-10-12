@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_project.Data;
 
 namespace web_project.Migrations
 {
     [DbContext(typeof(web_projectContext))]
-    partial class web_projectContextModelSnapshot : ModelSnapshot
+    [Migration("20211011185801_hjkkk")]
+    partial class hjkkk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,22 +52,19 @@ namespace web_project.Migrations
                         {
                             Id = "1",
                             ConcurrencyStamp = "1",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
+                            Name = "Admin"
                         },
                         new
                         {
                             Id = "2",
                             ConcurrencyStamp = "2",
-                            Name = "Teacher",
-                            NormalizedName = "Teacher"
+                            Name = "Teacher"
                         },
                         new
                         {
                             Id = "3",
                             ConcurrencyStamp = "2",
-                            Name = "Student",
-                            NormalizedName = "Student"
+                            Name = "Student"
                         });
                 });
 
@@ -162,15 +161,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4dd108a0-b180-482a-8dfb-c90fb21ec0fe",
+                            ConcurrencyStamp = "3b235075-4a69-4a11-9baf-5fa94de77d2b",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG8bjO4pxdRXTatW3N3W7yjkr3oJ2xCzGRYf0KHDIVug3ilbIA1SrX5TvlcYFi2+xA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELT6CICGU4jcRxGRy6OHVdAEGcxGJ1AkZbm5AMA2lIb05YKQmQKoDMpqNM0vUj4tQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "64b9ad2e-f782-4d74-b85e-cebbb6ba9c6c",
+                            SecurityStamp = "f99fbca8-ed48-46ff-ba77-944cae819f65",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -281,52 +280,7 @@ namespace web_project.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Commercial Bank of Ceylon"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Sampath Bank Plc"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "National Savings Bank"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "People’s Bank"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Hatton National Bank"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Seylan Bank Plc"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "National Development Bank Plc"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Amana Bank"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Nations Trust Bank Plc"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "DFCC Bank"
+                            Name = "AAA"
                         });
                 });
 

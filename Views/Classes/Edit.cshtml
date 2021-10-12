@@ -2,56 +2,200 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "_Layout";
 
 }
 
-<h1>Edit</h1>
 
-<h4>Class</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form enctype="multipart/form-data" asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="Image" />
 
-            <div class="form-group">
-                <label asp-for="Teacher" class="control-label"></label>
-                <select asp-for="Teacher" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="Teacher" class="text-danger"></span>
+<html>
+
+<head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <script src="filename.js?version = 2.1"></script>
+
+
+    <title>E-Learning system </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+        #grad1 {
+            height: 1000px;
+            background-color: red; /* For browsers that do not support gradients */
+            background-image: linear-gradient(white, black);
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Header nav bar -->
+    <div id="grad1">
+
+        <header id="header" class="alt">
+
+            <nav id="nav">
+                <ul>
+                    @{
+                        if (this.User.Identity.IsAuthenticated)
+                        {
+                            var role = this.User.Claims.ElementAt(3).Value;
+
+                            if (role == "Admin")
+
+                            {
+                                <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                                <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                            }
+                            else if (role == "Student")
+                            {
+                                <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
+                                <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                            }
+                            else if (role == "Teacher")
+                            {
+                                <li><a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                                <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                <li><a asp-action="Index" asp-controller="Classes">Materials</a></li>
+                            }
+                            <li>
+                                <a asp-action="Profile" asp-controller="Users">
+                                    <i class='fas fa-user' style='font-size:17px'></i>&nbsp;@this.User.Identity.Name
+                                </a>
+                            </li>
+                            <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                            <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                            <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
+                        }
+                    }
+                </ul>
+            </nav>
+        </header>
+
+
+        <!-- Banner -->
+        <section id="three" class="wrapper style1">
+            <div class="container">
+                <p>
+                    <a asp-action="Create">Add New Class Details</a>
+                </p>
+                <h1>Edit Your class Details</h1>
+
+                <h4>Class</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form enctype="multipart/form-data" asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Image" />
+
+                            <div class="form-group">
+                                <label asp-for="Teacher" class="control-label"></label>
+                                <select asp-for="Teacher" class="form-control" asp-items="ViewBag.UserId"></select>
+                                <span asp-validation-for="Teacher" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Grade" class="control-label"></label>
+                                <input asp-for="Grade" class="form-control" />
+                                <span asp-validation-for="Grade" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Subject" class="control-label"></label>
+                                <input asp-for="Subject" class="form-control" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Date" class="control-label"></label>
+                                <input asp-for="Date" class="form-control" />
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Time" class="control-label"></label>
+                                <input asp-for="Time" class="form-control" />
+                                <span asp-validation-for="Time" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Url" class="control-label"></label>
+                                <input asp-for="Url" class="form-control" />
+                                <span asp-validation-for="Url" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
-                <span asp-validation-for="Grade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subject" class="control-label"></label>
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Time" class="control-label"></label>
-                <input asp-for="Time" class="form-control" />
-                <span asp-validation-for="Time" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </section>
     </div>
-</div>
+</body>
+</html>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -179,18 +179,21 @@ namespace web_project.Data
                  {
                      Id = "1",
                      Name = "Admin",
+                     NormalizedName = "Admin",
                      ConcurrencyStamp = "1"
                  },
                 new IdentityRole
                 {
                     Id = "2",
                     Name = "Teacher",
+                    NormalizedName = "Teacher",
                     ConcurrencyStamp = "2"
                 },
                  new IdentityRole
                  {
                      Id = "3",
                      Name = "Student",
+                     NormalizedName = "Student",
                      ConcurrencyStamp = "2"
                  }
             );
