@@ -25,14 +25,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-
-
     <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
-
     <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -55,7 +51,7 @@
                         if (role == "Admin")
 
                         {
-                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
                             <li><a asp-action="Students" asp-controller="Users">Students</a></li>
                             <li><a href="#two">Chat</a></li>
@@ -64,7 +60,7 @@
                         }
                         else if (role == "Student")
                         {
-                            <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
                             <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
                             <li><a href="#two">Chat</a></li>
                             <li><a href="#Materials">Materials</a></li>
@@ -72,10 +68,11 @@
                         }
                         else if (role == "Teacher")
                         {
-                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                            <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
                             <li><a href="#two">Chat</a></li>
                             <li><a href="#Materials">Materials</a></li>
-                            <li><a href="#four">Masseges</a></li>
+                            <li><a href="#four">Massages</a></li>
                         }
                         <li>
                             <a asp-action="Profile" asp-controller="Users">
@@ -99,7 +96,7 @@
 
 
     <!-- Banner -->
-    <section id="banner" style="height:450px">
+    <section id="banner" style="height:650px">
         <h2>"සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය"</h2>
         <p> </p>
         <ul class="actions">

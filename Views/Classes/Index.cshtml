@@ -97,6 +97,7 @@
                     <p>
                         <a asp-action="Create">Add New Class Details</a>
                     </p>
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -139,12 +140,31 @@
                                         @Html.DisplayFor(modelItem => item.Time)
                                     </td>
                                     <td>
-                                        @*<img height="75" width="65" src=~/@Html.DisplayFor(modelItem => />*@
-                                    </td>*
+                                        <img height="75" width="65" src=~/@Html.DisplayFor(modelItem => item.Image) />
+                                    </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        <div>
+                                            @{
+
+                                                var role = this.User.Claims.ElementAt(3).Value;
+                                                if (role == "Teacher")
+                                                {
+                                                    <div>
+                                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                }
+                                                else if (role == "Admin")
+                                                {
+                                                    <div>
+
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
                                     </td>
                                 </tr>
                             }

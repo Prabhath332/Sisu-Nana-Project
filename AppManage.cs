@@ -17,7 +17,8 @@ namespace web_project
         public static string ErrorMsg = "";
 
 
-        public static string requestimagePath = @"C:\My\Chat Project\neww\web-project\wwwroot\images";
+        public static string requestimagePath = @"C:\Users\Prabhath\Desktop\Final 2\Chat-Project\wwwroot\images";
+    
     }
 
 

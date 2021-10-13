@@ -35,7 +35,7 @@ namespace web_project.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             if (User.Identity.IsAuthenticated)
             {
-                ViewBag.CurrentUserName = currentUser.UserName;
+         //       ViewBag.CurrentUserName = currentUser.UserName;
             }
             var messages = await _context.Messages.ToListAsync();
             ViewBag.data = messages;

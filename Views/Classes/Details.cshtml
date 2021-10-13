@@ -2,12 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-
-
 }
-
-
-
 
 <html>
 
@@ -55,10 +50,24 @@
         <!-- Banner -->
         <section id="three" class="wrapper style1">
             <div class="container">
-                <h1>Details</h1>
+                <h1>Class Details</h1>
 
                 <div>
-                    <h4>Class</h4>
+                    @{
+
+                        var role = this.User.Claims.ElementAt(3).Value;
+                        if (role == "Teacher")
+                        {
+                            <div class="form-group" style="padding-top:0em">
+                                <input style="width:110px ; " href="@Html.DisplayFor(model => model.Url)" type="submit" value="Start Class" class="btn btn-primary" />
+                            </div>
+                        }
+                        else if (role == "Admin")
+                        {
+                            <div>
+                            </div>
+                        }
+                    }
                     <hr />
                     <div class="row">
                         <div class="col-md-4">
@@ -96,10 +105,9 @@
                             </dl>
                         </div>
                         <div class="col-md-5">
-                            <img height="425" width="315" src=~/@Html.DisplayFor(model => model.Image)/>
+                            <img height="425" width="380" src=~/@Html.DisplayFor(model => model.Image)/>
                         </div>
                     </div>
-
                 </div>
                 <div>
                     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
