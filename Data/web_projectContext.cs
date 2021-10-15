@@ -194,7 +194,7 @@ namespace web_project.Data
                      Id = "3",
                      Name = "Student",
                      NormalizedName = "Student",
-                     ConcurrencyStamp = "2"
+                     ConcurrencyStamp = "3"
                  }
             );
         }
