@@ -27,9 +27,14 @@ namespace web_project.Controllers
             return View(await web_projectContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Materials()
+        public async Task<IActionResult> IndexAdmin()
         {
-          
+            var web_projectContext = _context.Class;
+            return View(await web_projectContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> Materials()
+        {  
             return View();
         }
         public async Task<IActionResult> Classes()
