@@ -10,7 +10,7 @@ using web_project.Models;
 
 namespace web_project.Controllers
 {
-
+    
     public class ContactsController : Controller
     {
         private readonly web_projectContext _context;

@@ -94,6 +94,7 @@ namespace web_project.Controllers
         }
         public IActionResult CreateStudent()
         {
+            ViewData["BankId"] = new SelectList(_context.Set<Bank>(), "Id", "Name");
             return View();
         }
 
