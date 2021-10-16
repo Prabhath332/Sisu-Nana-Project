@@ -4,50 +4,148 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mobile)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobile)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<html>
+
+<head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <script src="filename.js?version = 2.1"></script>
+
+
+    <title>E-Learning system </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+        #grad1 {
+            height: 1000px;
+            background-color: red; /* For browsers that do not support gradients */
+            background-image: linear-gradient(white, black);
+        }
+    </style>
+</head>
+
+
+
+
+
+<body>
+    <header id="header" class="alt">
+        <nav id="nav">
+            <ul>
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        var role = this.User.Claims.ElementAt(3).Value;
+
+                        if (role == "Admin")
+
+                        {
+                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
+                        }
+                        else if (role == "Student")
+                        {
+                            <li><a asp-action="Classes" asp-controller="Classes">Class</a></li>
+                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a href="#four">Masseges</a></li>
+                        }
+                        else if (role == "Teacher")
+                        {
+                            <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
+                            <li><a href="#two">Chat</a></li>
+                            <li><a href="#Materials">Materials</a></li>
+                            <li><a href="#four">Masseges</a></li>
+                        }
+                        <li>
+                            <a asp-action="Profile" asp-controller="Users">
+                                <i class='fas fa-user' style='font-size:15px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
+                            </a>
+                        </li>
+                        <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                        <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                        <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                        <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
+                    }
+                }
+            </ul>
+
+        </nav>
+    </header>
+
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mobile)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Message)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

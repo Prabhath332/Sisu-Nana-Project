@@ -2,61 +2,101 @@
 
 @{
     ViewData["Title"] = "Teachers";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3">
+<head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
 
-            <form asp-action="AddToClass">
-                <td style="width:30px">
-                    <img height="225" onclick="javascript: window.open('a')" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
-                    <br />
+    <script src="filename.js?version = 2.1"></script>
 
-                 &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Subject)
-                    <br />
-                    &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Date) 
-                    <br />
-                      &nbsp  &nbsp  &nbsp  &nbsp  @Html.DisplayFor(modelItem => item.Time) 
-                    <br />
-                    <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
-                   
-                    <div class="form-group" style="padding-top:0em">
-                        <input style="width:110px ; " type="submit" value="Add" class="btn btn-primary" />
-                    </div>
-                    @{
-                    
-                     var role = this.User.Claims.ElementAt(3).Value;
-                     if (role == "Studnet")
-                        {
+
+    <title>E-Learning system </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+        #grad1 {
+            height: 1200px;
+            background-color: red; /* For browsers that do not support gradients */
+            background-image: linear-gradient(white, black);
+        }
+    </style>
+</head>
+
+<div id="grad1">
+<div class="container">
+        <br /><br /><br /><br /><br /><br />
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+
+                    <form asp-action="AddToClass">
+                        <td style="width:30px">
+                            <img height="225" onclick="javascript: window.open('a')" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) />
+
+
+                            @*<img height="225" onclick="javascript: window.open('a')" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) />*@
+                            <br />
+
+                            &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Subject)
+                            <br />
+                            &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Date)
+                            <br />
+                            &nbsp  &nbsp  &nbsp  &nbsp  @Html.DisplayFor(modelItem => item.Time)
+                            <br />
+                            <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
+
                             <div class="form-group" style="padding-top:0em">
-                                <input style="width:110px ; " href="@item.Url" type="submit" value="Join" class="btn btn-primary" />
+                                <input style="width:110px ; " type="submit" value="Register" class="btn btn-primary" />
                             </div>
+                            @{
 
-                        }
-                        else if (role == "Admin")
-                        {
-                              <div class="form-group" style="padding-top:0em">
-                                <input onclick="location.href='@item.Url';" style="width:110px ; " type="submit" value="Start" class="btn btn-primary" />
-                            </div>
-                        }
-                    }
-                  
-                </td>
-            </form>
-            <form>
-                <script src="https://checkout.stripe.com/checkout.js"
-                        class="stripe-button"
-                        data-key="pk_test_51JGJUuCfmMrdpWDAZcK1b6r64r4T9WDg5Qc6PIf1yGX0qTNjBxBc1V8J78gdnAykAcvpj4NmBTF9NIF8uq0w32wR00uTkIhnG1"
-                        data-name="Custom t-shirt"
-                        data-description="Your custom designed t-shirt"
-                        data-amount="{{ORDER_AMOUNT}}"
-                        data-currency="LKR">
-                </script>
-            </form>
+                                var role = this.User.Claims.ElementAt(3).Value;
+                                if (role == "Student")
+                                {
+                                    <div class="form-group" style="padding-top:0em">
+                                        <a href ="@item.Url" > <input style="width:110px ;"  value="Join Class" class="btn btn-primary" /> </a>
+                                    </div>
+
+                                }
+                                else if (role == "Teacher")
+                                {
+                                    <div class="form-group" style="padding-top:0em">
+                                        <a href="@item.Url"> <input style="width:110px ;" value="Start Class" class="btn btn-primary" /> </a>
+                                    </div>
+                                }
+                            }
+
+                        </td>
+                    </form>
+                    <form>
+                        <script src="https://checkout.stripe.com/checkout.js"
+                                class="stripe-button"
+                                data-key="pk_test_51JGJUuCfmMrdpWDAZcK1b6r64r4T9WDg5Qc6PIf1yGX0qTNjBxBc1V8J78gdnAykAcvpj4NmBTF9NIF8uq0w32wR00uTkIhnG1"
+                                data-name="Pay Your Donation"
+                                data-description="Your contribution is a great support to us"
+                                data-amount="{{ORDER_AMOUNT}}"
+                                data-currency="LKR">
+                        </script>
+                    </form>
+                </div>
+            }
         </div>
-    }
+    </div>
+
 </div>

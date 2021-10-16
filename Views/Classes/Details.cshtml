@@ -2,59 +2,127 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "_Layout";
-
 }
 
-<h1>Details</h1>
+<html>
 
-<div>
-    <h4>Class</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Teacher)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Teacher)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Grade)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Grade)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Subject)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Subject)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Date)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Date)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Time)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Time)
-                </dd>
-            </dl>
-        </div>
-         <div class="col-md-5">
-                       <img height="425" width="315" src=~/@Html.DisplayFor(model => model.Image) alt="" />
+<head>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <script src="filename.js?version = 2.1"></script>
 
 
-        </div>
+    <title>E-Learning system </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+        #grad1 {
+            height: 1000px;
+            background-color: red; /* For browsers that do not support gradients */
+            background-image: linear-gradient(white, black);
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Header nav bar -->
+    <div id="grad1">
+
+        <header id="header" class="alt">
+            <br /><br /><br /><br />
+        </header>
+
+
+        <!-- Banner -->
+        <section id="three" class="wrapper style1">
+            <div class="container">
+                <h1>Class Details</h1>
+
+                <div>
+                    @{
+
+                        var role = this.User.Claims.ElementAt(3).Value;
+                        if (role == "Teacher")
+                        {
+                            <div class="form-group" style="padding-top:0em">
+                                <input style="width:110px ; " href="@Html.DisplayFor(model => model.Url)" type="submit" value="Start Class" class="btn btn-primary" />
+                            </div>
+                        }
+                        else if (role == "Admin")
+                        {
+                            <div>
+                            </div>
+                        }
+                    }
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Teacher)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Teacher)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Grade)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Grade)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Subject)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Subject)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Date)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Time)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Time)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-5">
+                            <img height="425" width="380" src=~/@Html.DisplayFor(model => model.Image)/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </section>
+
+
+
     </div>
-   
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+</body>
+</html>
+
+
+
+
+

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using web_project.Data;
 using web_project.Hubs;
+using web_project.Models;
 
 namespace web_project
 {
@@ -20,22 +21,36 @@ namespace web_project
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-        
+
+            //chatproject
+
+            //services.AddDbContext<web_projectContext>(options =>
+            //options.UseSqlServer(
+            //Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<web_projectContext>();
+            //services.AddControllersWithViews();
+            //services.AddRazorPages();
+            //services.AddSignalR();
+
+            //services.AddDbContext<web_projectContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("Sisu_Nana_Web_PlatformContext")));
+
+
+
             services.ConfigureApplicationCookie(options =>
             {
-                // Cookie settings
+
                 options.Cookie.HttpOnly = true;
-                //options.Cookie.Expiration 
+
 
                 options.ExpireTimeSpan = TimeSpan.FromHours(2);
                 options.LoginPath = "/Ideaaantity/Accaaount/Loaagin";
                 options.LogoutPath = "/Identity/Account/Logout";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
-                //options.ReturnUrlParameter=""
             });
 
             services.AddRazorPages().AddRazorRuntimeCompilation();

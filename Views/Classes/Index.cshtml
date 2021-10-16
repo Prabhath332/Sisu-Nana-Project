@@ -1,66 +1,4 @@
-﻿@*@model IEnumerable<web_project.Models.Class>
-
-    @{
-        ViewData["Title"] = "Index";
-        Layout = "_Layout";
-    }
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Teacher)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Grade)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Subject)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Time)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Teacher)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Time)
-                </td>
-                <td>
-                      <img height="75" width="65" src=~/@Html.DisplayFor(modelItem => item.Image) alt="" />
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>*@
-
-
-
+﻿
 @model IEnumerable<web_project.Models.Class>
 
     <html>
@@ -81,8 +19,6 @@
 
         <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
-        <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -96,7 +32,6 @@
                 background-image: linear-gradient(white, black);
                    }
         </style>
-
     </head>
 
 
@@ -131,7 +66,7 @@
                                     }
                                     else if (role == "Teacher")
                                     {
-                                        <li> <a asp-controller="Home" asp-action="Index"> Home </a> </li>
+                                        <li><a asp-controller="Home" asp-action="Index"> Home </a> </li>
                                         <li><a asp-action="Students" asp-controller="Users">Students</a></li>
                                         <li><a asp-action="Index" asp-controller="Classes">Class</a></li>
                                         <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
@@ -152,10 +87,8 @@
                                 }
                             }
                         </ul>
-
                     </nav>
             </header>
-            <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
 
             <!-- Banner -->
@@ -164,6 +97,7 @@
                     <p>
                         <a asp-action="Create">Add New Class Details</a>
                     </p>
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -206,12 +140,31 @@
                                         @Html.DisplayFor(modelItem => item.Time)
                                     </td>
                                     <td>
-                                        @*<img height="75" width="65" src=~/@Html.DisplayFor(modelItem => />*@
-                                    </td>*
+                                        <img height="75" width="65" src=~/@Html.DisplayFor(modelItem => item.Image) />
+                                    </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        <div>
+                                            @{
+
+                                                var role = this.User.Claims.ElementAt(3).Value;
+                                                if (role == "Teacher")
+                                                {
+                                                    <div>
+                                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                }
+                                                else if (role == "Admin")
+                                                {
+                                                    <div>
+
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
                                     </td>
                                 </tr>
                             }
@@ -219,9 +172,7 @@
                     </table>
                 </div>
             </section>
-
                </div>
-
     </body>
 </html>
 

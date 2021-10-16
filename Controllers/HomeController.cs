@@ -30,17 +30,12 @@ namespace web_project.Controllers
         }
 
        
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
         public async Task<IActionResult> Index()
         {
-            //return View();
             var currentUser = await _userManager.GetUserAsync(User);
             if (User.Identity.IsAuthenticated)
             {
-                ViewBag.CurrentUserName = currentUser.UserName;
+         //       ViewBag.CurrentUserName = currentUser.UserName;
             }
             var messages = await _context.Messages.ToListAsync();
             ViewBag.data = messages;

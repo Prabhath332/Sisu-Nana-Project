@@ -34,8 +34,6 @@ namespace web_project.Data
             foreach (var entity in added)
             {
                 var track = entity as BaseModel;
-              //  track.CreatedDate = System.DateTime.Now;
-              //  track.CreatedUserName = user.Identity.Name;
             }
 
             return base.SaveChanges();
@@ -47,6 +45,15 @@ namespace web_project.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //chatapplication
+
+            //base.OnModelCreating(builder);
+            //builder.Entity<Message>()
+            //.HasOne<AppUser>(a => a.Sender)
+            //.WithMany(d => d.Messages)
+            //.HasForeignKey(d => d.UserID);
+
             base.OnModelCreating(builder);
 
           
@@ -149,7 +156,6 @@ namespace web_project.Data
                 Email = "admin@outlook.com",
                 NormalizedEmail = "admin@outlook.com",
                 NormalizedUserName = "Admin",
-
             };
             
             user.PasswordHash = passwordHasher.HashPassword(user, "Password@123");
@@ -160,6 +166,7 @@ namespace web_project.Data
             );
         }
     }
+
     public class RoleSeed : IEntityTypeConfiguration<IdentityRole>
     {
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
@@ -187,7 +194,7 @@ namespace web_project.Data
                      Id = "3",
                      Name = "Student",
                      NormalizedName = "Student",
-                     ConcurrencyStamp = "2"
+                     ConcurrencyStamp = "3"
                  }
             );
         }
@@ -206,9 +213,8 @@ namespace web_project.Data
                  {
                      UserId = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                      RoleId = "1",
-
                  }
-            );
+            ) ;
         }
     }
   

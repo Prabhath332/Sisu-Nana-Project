@@ -51,6 +51,8 @@ namespace web_project.Controllers
            // List <User> users = new List<User>() 
             return View(await _context.User.Where(a=>a.UserTypeId=="2").ToListAsync());
         }
+
+
         public async Task<IActionResult> Students()
         {
             List<RegistedStudent> registedStudents = new List<RegistedStudent>();
@@ -102,9 +104,7 @@ namespace web_project.Controllers
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-
                var loggedinUser  = await _context.User.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefaultAsync();
-
 
            //   AppManage.LoggedInUserId = loggedinUser.Id;
                 _logger.LogInformation("User logged in.");
@@ -180,7 +180,7 @@ namespace web_project.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ViewLogIn", "Home");
                    
                 }
                 catch (Exception ex)
@@ -215,7 +215,7 @@ namespace web_project.Controllers
                         await _context.SaveChangesAsync();
                         
                         await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ViewLogIn", "Home");
                     }
                     foreach (var error in result.Errors)
                     {
@@ -228,7 +228,7 @@ namespace web_project.Controllers
 
                 }
             }
-            return View( user);
+            return View(  );
         }
 
 

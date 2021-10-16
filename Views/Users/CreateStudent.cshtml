@@ -82,7 +82,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="~/assets/css/main.css" />
 
-    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Home/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/Home/css/owl.theme.default.min.css" rel="stylesheet" />
@@ -90,7 +90,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>*@
 </head>
 
 
@@ -102,6 +102,7 @@
 
         <nav id="nav">
             <ul>
+                <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
                 <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
                 <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
                 <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
@@ -236,7 +237,7 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
                         <div style="width:100%">
                             <div class="form-group">
-                                <input asp-for="Password" type="text" placeholder="Password" class="form-control" />
+                                <input asp-for="Password" type="password" placeholder="Password" class="form-control" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                         </div>
@@ -251,7 +252,7 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger">  </div>
                         <div style="width:100%">
                             <div class="form-group">
-                                <input asp-for="ConfirmPassword" type="text" placeholder="Confirm Password" class="form-control" />
+                                <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" class="form-control" />
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
