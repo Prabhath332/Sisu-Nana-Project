@@ -23,7 +23,8 @@ namespace web_project.Controllers
         // GET: Classes
         public async Task<IActionResult> Index()
         {
-            var web_projectContext = _context.Class;
+            var username = this.User.Identity.Name;
+            var web_projectContext = _context.Class.Where(a=>a.Teacher==username);
             return View(await web_projectContext.ToListAsync());
         }
 
