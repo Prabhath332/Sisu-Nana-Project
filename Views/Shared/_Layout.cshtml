@@ -1,144 +1,495 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {
-            background-image: url('~/images/1.jpg');
-        }
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {
+                background-image: url('~/images/1.jpg');
+            }
 
-        .table th, .table td {
-            padding: 0.15rem;
-            vertical-align: top;
-            border-top: 1px solid #dee2e6;
-        }
-    </style>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Tution Management </title>
+            .table th, .table td {
+                padding: 0.15rem;
+                vertical-align: top;
+                border-top: 1px solid #dee2e6;
+            }
+        </style>
 
-    <div>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] Tution Management </title>
+
         <div>
-            <environment include="Development">
-                <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-            </environment>
-        </div>
-    </div>
-
-    <environment exclude="Development">
-        <div>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-                  crossorigin="anonymous"
-                  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-        </div>
-    </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
-
-<body style="border-bottom:0em;padding-bottom:0em">
-    <header style="background-color: #004e64; color: white; padding-bottom: 0em">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div>
-                <div class="container">
-                    <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index"> <text>Home</text> </a>
+                <environment include="Development">
+                    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+                </environment>
+            </div>
+        </div>
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1" style="color:white">
-                            @{
-                                if (this.User.Identity.IsAuthenticated)
-                                {
-                                    var role = this.User.Claims.ElementAt(3).Value;
+        <environment exclude="Development">
+            <div>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+                      crossorigin="anonymous"
+                      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+            </div>
+        </environment>
 
-                                    if (role == "Admin")
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+
+    <body style="border-bottom:0em;padding-bottom:0em">
+        <header style="background-color: #004e64; color: white; padding-bottom: 0em">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+                <div>
+                    <div class="container">
+                        <a class="navbar-brand" style="color:white" asp-area="" asp-controller="Home" asp-action="Index"> <text>Home</text> </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                            <ul class="navbar-nav flex-grow-1" style="color:white">
+                                @{
+                                    if (this.User.Identity.IsAuthenticated)
                                     {
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Classses" asp-action="Index"> Classses</a>
+                                        var role = this.User.Claims.ElementAt(3).Value;
+
+                                        if (role == "Admin")
+
+                                        {
+                                            <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                            <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
+                                        }
+                                        else if (role == "Student")
+                                        {
+                                            <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                        }
+                                        else if (role == "Teacher")
+                                        {
+                                            <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                            <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                        }
+                                        <li>
+                                            <a asp-action="Profile" asp-controller="Users">
+                                                <i class='fas fa-user' style='font-size:15px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
+                                            </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Teachers</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Users" asp-action="Index"> Students</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a style="color:white" class="nav-link " asp-controller="Materials" asp-action="Index"> Materials</a>
-                                        </li>
+                                        <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
                                     }
-                                    else if (role == "Student")
+                                    else
                                     {
-                                        // menu
-                                    }
-                                    else if (role == "Teacher")
-                                    {
-                                        // menu
+                                        <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                        <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                                        <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                                        <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
                                     }
                                 }
-                            }
-                        </ul>
+                            </ul>
+                        </div>
 
+
+                        @{
+                            if (this.User.Identity.IsAuthenticated)
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="nav-item float-right">
+                                        <a style="color:white" class="nav-link " asp-area="" asp-controller="Users" asp-action="LogOut"> <div>Log out</div></a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="nav-item float-right">
+                                        <a class="nav-link " asp-area="" asp-controller="Users" asp-action="ViewLogIn"> <div>LogIn</div></a>
+                                    </li>
+                                </ul>
+                            }
+                        }
                     </div>
+                </div>
+            </nav>
+        </header>
+        <div class="row" style="background-color:ghostwhite ; padding-top:0em">
+
+            <div class="col-12" style="margin: 0em; padding: 0em; padding-left: 2em; padding-right: 2em">
+                @RenderBody()
+            </div>
+        </div>
+    </body>
+    </html>*@
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] Tution Management </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+
+
+    <body>
+        <nav class="navbar navbar-inverse b">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"> සිසු නැණ </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a asp-action="Index" asp-controller="Home">Home</a></li>
 
                     @{
                         if (this.User.Identity.IsAuthenticated)
                         {
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item float-right">
-                                    <a style="color:white" class="nav-link " asp-area="" asp-controller="Users" asp-action="LogOut"> <div>Log out</div></a>
-                                </li>
-                            </ul>
+                            var role = this.User.Claims.ElementAt(3).Value;
+
+                            if (role == "Admin")
+
+                            {
+                                <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
+                            }
+                            else if (role == "Student")
+                            {
+                                <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            }
+                            else if (role == "Teacher")
+                            {
+                                <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                            }
+
                         }
                         else
                         {
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item float-right">
-                                    <a class="nav-link " asp-area="" asp-controller="Users" asp-action="ViewLogIn"> <div>LogIn</div></a>
-                                </li>
-                            </ul>
+                            <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                            <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                            <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                            <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
                         }
                     }
-                </div>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a>
+                            <span class="glyphicon glyphicon-user"></span>
+                            <i class='fas fa-user' style='font-size:15px'></i>&nbsp;@this.User.Identity.Name
+                        </a>
+                    </li>
+                    <li><a asp-action="LogOut" asp-controller="Users"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
             </div>
+
+
+        </nav>
+
+        <div class="row" style="background-color:ghostwhite ; padding-top:0em">
+
+            <div class="col-12" style="margin: 0em; padding: 0em; padding-left: 2em; padding-right: 2em">
+                @RenderBody()
+            </div>
+        </div>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Tution Management </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+
+
+<body >
+
+    <header id="header" class="alt">
+        <nav class="nav">
+            <div class="container-fluid ">
+                <div class="logo ">
+                    <a href="#">සිසු නැණ</a>
+                </div>
+
+                <div id="mainListDiv" class="main_list">
+                
+                    <ul class="navlinks">
+
+                        @{
+                            if (this.User.Identity.IsAuthenticated)
+                            {
+                                var role = this.User.Claims.ElementAt(3).Value;
+
+                                if (role == "Admin")
+
+                                {
+                                    <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                    <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                    <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                    <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                    <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
+                                }
+                                else if (role == "Student")
+                                {
+                                    <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                    <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                    <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                }
+                                else if (role == "Teacher")
+                                {
+                                    <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                    <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                    <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                }
+
+                            }
+                            else
+                            {
+                                <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                <li><a asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
+                                <li><a asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
+                                <li><a asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
+                            }
+
+                            <li><a><span class="glyphicon glyphicon-user"></span> <i class='fas fa-user' style='font-size:15px'></i>&nbsp;@this.User.Identity.Name</a></li>
+                            <li><a asp-action="LogOut" asp-controller="Users"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        }
+                    </ul>
+               
+                </div>
         </nav>
     </header>
+
     <div class="row" style="background-color:ghostwhite ; padding-top:0em">
 
         <div class="col-12" style="margin: 0em; padding: 0em; padding-left: 2em; padding-right: 2em">
             @RenderBody()
-
         </div>
     </div>
 
-    <environment include="Development">
-        <div>
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-        </div>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    asp-fallback-test="window.jQuery"
-                    crossorigin="anonymous"
-                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-            </script>
-        </div>
-        <div>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-            </script>
-        </div>
-    </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+
+
+
+
+<style>
+
+    import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Quicksand", sans-serif;
+        font-size: 62.5%;
+
+        font-size: 10px;
+    }
+    /*-- Inspiration taken from abdo steif -->
+    /* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
+
+    /* Navbar section */
+
+    .nav {
+        width: 100%;
+        height: 65px;
+        position: fixed;
+        line-height: 65px;
+        text-align: center;
+        
+    }
+
+        .nav div.logo {
+            float: left;
+            width: auto;
+            height: auto;
+            padding-left: 3rem;
+        }
+
+            .nav div.logo a {
+                text-decoration: none;
+                color: #00002e;
+                font-size: 2.0rem;
+                font-weight: bold;
+            }
+
+                .nav div.logo a:hover {
+                    color: #00E676;
+                }
+
+        .nav div.main_list {
+            height: 65px;
+            float: right;
+        }
+
+            .nav div.main_list ul {
+                width: 100%;
+                height: 65px;
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+                .nav div.main_list ul li {
+                    width: auto;
+                    height: 65px;
+                    padding: 0;
+                    padding-right: 3rem;
+                }
+
+                    .nav div.main_list ul li a {
+                        text-decoration: none;
+                        color: #00002e;
+                        line-height: 65px;
+                        font-size: 1.0rem;
+                        font-weight: bold;
+                    }
+
+                        .nav div.main_list ul li a:hover {
+                            color: #00002e;
+                        }
+
+
+    /* Home section */
+
+    .home {
+        width: 100%;
+        height: 100vh;
+        background-image: url(https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0f6908fa5e81286213c7211276e6b3d&auto=format&fit=crop&w=1500&q=80);
+        background-position: center top;
+        background-size: cover;
+    }
+
+    .navTrigger {
+        display: none;
+    }
+
+    .nav {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+
+    /* Media qurey section */
+
+    media screen and (min-width: 768px) and (max-width: 1024px) {
+        .container
+
+    {
+        margin: 0;
+    }
+
+    }
+
+    media screen and (max-width:768px) {
+        .navTrigger
+
+    {
+        display: block;
+    }
+
+    .nav div.logo {
+        margin-left: 15px;
+    }
+
+    .nav div.main_list {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .nav div.show_list {
+        height: auto;
+        display: none;
+    }
+
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #00002e;
+        /*same background color of navbar*/
+        background-position: center top;
+    }
+
+        .nav div.main_list ul li {
+            width: 100%;
+            text-align: right;
+        }
+
+            .nav div.main_list ul li a {
+                text-align: center;
+                width: 100%;
+                font-size: 3rem;
+                padding: 20px;
+            }
+
+    .nav div.media_button {
+        display: block;
+    }
+
+    }
+</style>

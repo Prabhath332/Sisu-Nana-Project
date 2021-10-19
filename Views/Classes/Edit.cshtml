@@ -2,49 +2,37 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-
-
-
+  <br /><br /><br /><br /><br /><br />   
 <html>
-
 <head>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
 
-    <script src="filename.js?version = 2.1"></script>
-
+    <script src="filename.js?version = 2.1"> </script>
 
     <title>E-Learning system </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
-    <style>
-        #grad1 {
-            height: 1200px;
-            background-color: red; /* For browsers that do not support gradients */
-            background-image: linear-gradient(white, black);
-        }
-    </style>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>*@
 </head>
-
 
 <body>
     <br /><br /><br /><br /><br /><br />
     <!-- Header nav bar -->
-    <div id="grad1">
+    <div >
         <!-- Banner -->
         <section id="three" class="wrapper style1">
             <div class="container">
@@ -52,7 +40,6 @@
                     <a asp-action="Create">Add New Class Details</a>
                 </p>
                 <h1>Edit Your class Details</h1>
-
                 <h4>Class</h4>
                 <hr />
                 <div class="row">
@@ -63,14 +50,14 @@
                             <input type="hidden" asp-for="Image" />
 
                             <div class="form-group">
-                                <label asp-for="Teacher" class="control-label"></label>
+                                <label asp-for="Teacher" class="control-label"> </label>
                                 <input readonly asp-for="Teacher" class="form-control" />
-                                <span asp-validation-for="Teacher" class="text-danger"></span>
+                                <span asp-validation-for="Teacher" class="text-danger"> </span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Grade" class="control-label"></label>
+                                <label asp-for="Grade" class="control-label"> </label>
                                 <input asp-for="Grade" class="form-control" />
-                                <span asp-validation-for="Grade" class="text-danger"></span>
+                                <span asp-validation-for="Grade" class="text-danger"> </span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Subject" class="control-label"></label>

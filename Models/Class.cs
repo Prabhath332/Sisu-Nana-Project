@@ -9,14 +9,18 @@ namespace web_project.Models
     public class Class
     {
         public int Id { get; set; }
+
         public string Teacher { get; set; }
+
         public string Url { get; set; }
+
         public int Grade { get; set; }
+
         public string Subject { get; set; }
 
         [DataType(DataType.Date)]
-
         public DateTime Date { get; set; }
+
         [DataType(DataType.Time)]
         public DateTime Time { get; set; }
 
@@ -24,8 +28,5 @@ namespace web_project.Models
 
         [NotMapped]
         public IFormFile Advertiesment { get; set; }
-
-
-
     }
 }

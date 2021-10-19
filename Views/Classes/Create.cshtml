@@ -3,69 +3,12 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
-@*<h4>Class</h4>
-    <hr />  <div class="row">
-        <div class="col-md-4">
-            <form enctype="multipart/form-data" asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-group">
-                    <label asp-for="Grade" class="control-label"></label>
-                    <input asp-for="Grade" class="form-control" />
-                    <span asp-validation-for="Grade" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Subject" class="control-label"></label>
-                    <input asp-for="Subject" class="form-control" />
-                    <span asp-validation-for="Subject" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Time" class="control-label"></label>
-                    <input asp-for="Time" class="form-control" />
-                    <span asp-validation-for="Time" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Url" class="control-label"></label>
-                    <input asp-for="Url" class="form-control" />
-                    <span asp-validation-for="Url" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Advertiesment" class="control-label"></label>
-                    <input asp-for="Advertiesment" class="form-control" />
-                    <span asp-validation-for="Advertiesment" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-success" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-
-
-
-
-
-
 
 <html>
 
@@ -83,87 +26,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Home/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <style>
-        #grad1 {
-            height: 1200px;
-            background-color: red; /* For browsers that do not support gradients */
-            background-image: linear-gradient(white, black);
-        }
-    </style>
 </head>
 
 
 <body>
-    <br /><br /><br /><br /><br /><br />
-    <!-- Header nav bar -->
-    <div id="grad1">
-        <!-- Banner -->
-        <section id="three" class="wrapper style1">
-            <div class="container">
-                <p>
-                    <a asp-action="Create">Add New Class Details</a>
-                </p>
-                <div class="row">
-                    <div class="col-md-4">
-                        <form enctype="multipart/form-data" asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <section id ="banner" style="height:650px">
+        <br /><br /><br /><br /><br /><br />
+        <!-- Header nav bar -->
+        <div>
+            <!-- Banner -->
+            <section id="three" class="wrapper style1">
+                <div class="container">
+                    <center><font face="Forte" size="25" color="Black"> Add your Class Details</font></center>  <br /><br />
+                    <div class="row">
+                        <div >
+                            <form enctype="multipart/form-data" asp-action="Create" class="form-horizontal">
 
-                            <div class="form-group">
-                                <label asp-for="Grade" class="control-label"></label>
-                                <input asp-for="Grade" class="form-control" />
-                                <span asp-validation-for="Grade" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Subject" class="control-label"></label>
-                                <input asp-for="Subject" class="form-control" />
-                                <span asp-validation-for="Subject" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Date" class="control-label"></label>
-                                <input asp-for="Date" class="form-control" />
-                                <span asp-validation-for="Date" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Time" class="control-label"></label>
-                                <input asp-for="Time" class="form-control" />
-                                <span asp-validation-for="Time" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Url" class="control-label"></label>
-                                <input asp-for="Url" class="form-control" />
-                                <span asp-validation-for="Url" class="text-danger"></span>
-<<<<<<< HEAD
-                                <a href="https://meet.jit.si/LiteraryBinsTelephoneAbove">Get Link In Jisti Meet</a>
-=======
-                                <a href="https://meet.jit.si/LiteraryBinsTelephoneAbove">Get Link In Jisti Meet</a>  <br />
->>>>>>> 8672a27018e84f5c2388c9651b415a8e3cbec140
-                                <a href="https://zoom.us/j/97769163815?pwd=Y2YrTXBCWGRGc0t4MVBNWE1haEZXUT09#success">Get Link In Zoom</a>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Advertiesment" class="control-label"></label>
-                                <input asp-for="Advertiesment" class="form-control" />
-                                <span asp-validation-for="Advertiesment" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-success" />
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="email">Grade:</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Grade" type="text" class="form-control" placeholder="Enter Grade">
+                                        <span asp-validation-for="Grade" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Subject:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="Subject" class="form-control" placeholder="Enter subject">
+                                        <span asp-validation-for="Subject" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="email">Class Date:</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Date" class="form-control">
+                                        <span asp-validation-for="Date" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="pwd">Class Time:</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Time" class="form-control">
+                                        <span asp-validation-for="Time" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="email">Class Join Link:</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Url" class="form-control" placeholder="Enter Class Link">
+                                        <span asp-validation-for="Url" class="text-danger"></span>
+                                    </div> <br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+                                    <a href="https://meet.jit.si/LiteraryBinsTelephoneAbove">Get Link In Jisti Meet</a>  <br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;
+                                    <a href="https://zoom.us/j/97769163815?pwd=Y2YrTXBCWGRGc0t4MVBNWE1haEZXUT09#success">Get Link In Zoom</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Advertiesment" class="control-label col-sm-2" for="email">Upload Your Advertiesment:</label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Advertiesment" class="form-control" />
+                                        <span asp-validation-for="Advertiesment" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <a asp-action="Index">Back to List</a>
-                </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
+    </section>
 </body>
 </html>

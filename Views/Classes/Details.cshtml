@@ -2,7 +2,9 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+ 
 
 <html>
 
@@ -28,19 +30,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
-    <style>
-        #grad1 {
-            height: 1000px;
-            background-color: red; /* For browsers that do not support gradients */
-            background-image: linear-gradient(white, black);
-        }
-    </style>
 </head>
 
 
 <body>
     <!-- Header nav bar -->
-    <div id="grad1">
+    <div >
 
         <header id="header" class="alt">
             <br /><br /><br /><br />
@@ -55,14 +50,14 @@
                 <div>
                     @{
 
-                        var role = this.User.Claims.ElementAt(3).Value;
-                        if (role == "Teacher")
+                     var role = this.User.Claims.ElementAt(3).Value;
+                     if (role == "Teacher")
                         {
                             <div class="form-group" style="padding-top:0em">
                                 <input style="width:110px ; " href="@Html.DisplayFor(model => model.Url)" type="submit" value="Start Class" class="btn btn-primary" />
                             </div>
                         }
-                        else if (role == "Admin")
+                     else if (role == "Admin")
                         {
                             <div>
                             </div>

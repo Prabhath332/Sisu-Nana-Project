@@ -38,11 +38,12 @@
 
 
 
-<body class="landing">
+<body class="landing " >
     <!-- Header nav bar -->
     <header id="header" class="alt">
         <nav id="nav">
             <ul>
+      
                 @{
                     if (this.User.Identity.IsAuthenticated)
                     {
@@ -106,7 +107,7 @@
 
 
     <!-- Three -->
-    <section id="one" class="wrapper style1">
+    <section id="one" class="wrapper style1 small">
         <div class="container">
             <center>
                 <header class="major special">
@@ -168,7 +169,7 @@
 
 
     <!-- Banner -->
-    <section id="Materials">
+    <section id="Materials" class="small">
         <section id="banner">
             <font face="Forte" size="25" color="White"> Textbooks, Books, Links & Educational Martials </font>
             <p> "Libraries store the energy that fuels the imagination.<br /> They open up windows to the world and inspire us to explore and achieve, <br />and contribute to improving our quality of life."<br /></p>
@@ -182,7 +183,7 @@
 
 
     <!-- Student Chat -->
-    <section id="two" class="wrapper style2 special">
+    <section id="two" class="wrapper style2 special small">
         <div class="feature">
             <header class="major special">
 
@@ -192,7 +193,7 @@
                 <p>Share your thoughts with each other</p>
             </header>
             <div class="container">
-<<<<<<< HEAD
+
 
 
 
@@ -207,13 +208,13 @@
                     <div class="row">
                         <div class="col-md-12" id="chat">
                             @if (Model != null)
-=======
+
                 <div class="row">
                     <div class="col-md-12" id="chat">
                         @if (@ViewBag.data != null)
                         {
                             @foreach (var message in @ViewBag.data)
->>>>>>> fe8100fad68493a94139fd9afa583762c7372d98
+
                             {
                                 @foreach (var Message in Model.OrderBy(m => m.When))
                                 {
