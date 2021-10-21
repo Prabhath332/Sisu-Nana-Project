@@ -23,18 +23,15 @@ namespace web_project
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<web_projectContext>(options =>
-            //options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddIdentityCore<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            //chatproject
+
+            //services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<web_projectContext>();
             //services.AddControllersWithViews();
             //services.AddRazorPages();
             services.AddSignalR();
 
-            //services.AddDbContext<web_projectContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("web_projectContext")));
-
-            services.AddSignalR();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -55,14 +52,14 @@ namespace web_project
 
             services.AddDbContext<web_projectContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("web_projectContext")));
-            // services.AddDbContext<web_projectContext>(options =>
-            // options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
+            //  services.AddDbContext<web_projectContext>(options =>
+            //options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
             services.AddSignalR();
 
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<web_projectContext>();
         }
 
-        //  This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -72,7 +69,7 @@ namespace web_project
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                //  The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -82,7 +79,6 @@ namespace web_project
             app.UseAuthentication();
 
             app.UseAuthorization();
-
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/Home/Index");

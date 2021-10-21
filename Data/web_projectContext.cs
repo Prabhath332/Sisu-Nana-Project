@@ -45,7 +45,6 @@ namespace web_project.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             //chatapplication
 
             base.OnModelCreating(builder);
@@ -56,27 +55,20 @@ namespace web_project.Data
 
             base.OnModelCreating(builder);
 
-          
             builder.ApplyConfiguration(new UserSeed());
             builder.ApplyConfiguration(new BankSeed());
             builder.ApplyConfiguration(new RoleSeed());
             builder.ApplyConfiguration(new UserRoleSeed());
-         
-
         }
-
         public DbSet<web_project.Models.Class> Class { get; set; }
         public DbSet<web_project.Models.Message> Messages { get; set; }
-
-
         public DbSet<web_project.Models.RegistedStudent> RegistedStudent { get; set; }
-
         public DbSet<web_project.Models.User> User { get; set; }
-
-
         public DbSet<web_project.Models.Contact> Contact { get; set; }
-
     }
+
+
+
     public class BankSeed : IEntityTypeConfiguration<Bank>
     {
         public void Configure(EntityTypeBuilder<Bank> builder)

@@ -34,11 +34,11 @@ namespace web_project.Controllers
               ViewBag.CurrentUserName = currentUser.UserName;
             }
             var messages = await _context.Messages.ToListAsync();
-            ViewBag.data = messages;
-            return View();
+            //ViewBag.data = messages;
+            return View(messages);
         }
 
-        public async Task<IActionResult> Create(Message message)
+        public async Task<IActionResult> Create1(Message message)
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +47,7 @@ namespace web_project.Controllers
                 message.UserID = sender.Id;
                 await _context.Messages.AddAsync(message);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
                 //return Ok();
             }
