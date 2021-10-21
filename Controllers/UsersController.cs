@@ -52,6 +52,12 @@ namespace web_project.Controllers
             return View(await _context.User.Where(a=>a.UserTypeId=="2").ToListAsync());
         }
 
+        public async Task<IActionResult> Student()
+        {
+            // List <User> users = new List<User>() 
+            return View();
+        }
+
 
         public async Task<IActionResult> Students()
         {

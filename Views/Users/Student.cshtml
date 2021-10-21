@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<web_project.Models.User>
 
 @{
-    ViewData["Title"] = "Teachers";
+    ViewData["Title"] = "Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,6 +20,9 @@
 
                     &nbsp @Html.DisplayFor(modelItem => item.UserName)
                     <br />
+
+
+                    <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
 
                 </td>
             </form>

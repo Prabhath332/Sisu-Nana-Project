@@ -225,25 +225,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Tution Management </title>
@@ -279,7 +263,7 @@
                                     <li><a asp-action="Index" asp-controller="Home" ali>Home</a></li>
                                     <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
                                     <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                                    <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                                    <li><a asp-action="Index" asp-controller="Users">Students</a></li>
                                     <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
                                 }
                                 else if (role == "Student")
@@ -309,6 +293,7 @@
                         }
                     </ul>
                
+                </div>
                 </div>
         </nav>
     </header>
