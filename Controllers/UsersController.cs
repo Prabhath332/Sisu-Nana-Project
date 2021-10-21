@@ -18,16 +18,16 @@ namespace web_project.Controllers
   
     public class UsersController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly ILogger<UsersController> _logger;
         private readonly web_projectContext _context;
 
 
         public UsersController(
             web_projectContext context,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
             ILogger<UsersController> logger)
         {
             _userManager = userManager;
@@ -169,17 +169,17 @@ namespace web_project.Controllers
             {
                 try
                 {
-                    var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email  };
+                    var AppUser = new AppUser { UserName = user.UserName, Email = user.Email  };
                     
-                    var result = await _userManager.CreateAsync(IdentityUser, user.Password);
+                    var result = await _userManager.CreateAsync(AppUser, user.Password);
                     if (result.Succeeded)
                     {
-                        await _userManager.AddToRoleAsync(IdentityUser,"Teacher");
+                        await _userManager.AddToRoleAsync(AppUser, "Teacher");
                         _logger.LogInformation("User created a new account with password.");
                         user.UserTypeId = "2";
                         _context.Add(user);
                         await  _context.SaveChangesAsync();
-                        await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
+                        await _signInManager.SignInAsync(AppUser, isPersistent: false);
                          return LocalRedirect(returnUrl);
 
                     }
@@ -210,17 +210,17 @@ namespace web_project.Controllers
             {
                 try
                 {
-                    var IdentityUser = new IdentityUser { UserName = user.UserName, Email = user.Email };
+                    var AppUser = new AppUser { UserName = user.UserName, Email = user.Email };
 
-                    var result = await _userManager.CreateAsync(IdentityUser, user.Password);
+                    var result = await _userManager.CreateAsync(AppUser, user.Password);
                     if (result.Succeeded)
                     {                                          
-                        await _userManager.AddToRoleAsync(IdentityUser, "Student");
+                        await _userManager.AddToRoleAsync(AppUser, "Student");
                         _logger.LogInformation("User created a new account with password.");
                         user.UserTypeId = "3";
                         _context.Add(user);
                         await _context.SaveChangesAsync();
-                        await _signInManager.SignInAsync(IdentityUser, isPersistent: false);
+                        await _signInManager.SignInAsync(AppUser, isPersistent: false);
                         return RedirectToAction("ViewLogIn", "Home");
                     }
                     foreach (var error in result.Errors)

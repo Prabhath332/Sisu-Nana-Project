@@ -14,14 +14,14 @@ namespace web_project.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly web_projectContext _context;
 
         public HomeController(
              web_projectContext context,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager
             )
         {
             _userManager = userManager;
@@ -35,7 +35,7 @@ namespace web_project.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             if (User.Identity.IsAuthenticated)
             {
-         //       ViewBag.CurrentUserName = currentUser.UserName;
+         //  ViewBag.CurrentUserName = currentUser.UserName;
             }
             //var messages = await _context.Messages.ToListAsync();
             //ViewBag.data = messages;

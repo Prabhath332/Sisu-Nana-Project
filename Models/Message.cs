@@ -14,7 +14,7 @@ namespace web_project.Models
         public DateTime When { get; set; }
 
         public string UserID { get; set; }
-        public virtual IdentityUser Sender { get; set; }
+        public virtual AppUser Sender { get; set; }
 
         public Message()
         {

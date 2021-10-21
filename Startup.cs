@@ -63,7 +63,7 @@ namespace web_project
             //options.UseMySql(Configuration.GetConnectionString("web_projectContext")));
             services.AddSignalR();
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<web_projectContext>();
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<web_projectContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

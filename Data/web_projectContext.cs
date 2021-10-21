@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace web_project.Data
 {
-    public class web_projectContext : IdentityDbContext<IdentityUser, IdentityRole, string>
+    public class web_projectContext : IdentityDbContext<AppUser, IdentityRole, string>
     {
         IHttpContextAccessor _httpContextAccessor;
         public web_projectContext(DbContextOptions<web_projectContext> options , IHttpContextAccessor httpContextAccessor)
@@ -142,14 +142,14 @@ namespace web_project.Data
 
 
 
-    public class UserSeed : IEntityTypeConfiguration<IdentityUser>
+    public class UserSeed : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<IdentityUser> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.ToTable("AspNetUsers");
-            PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();
+            PasswordHasher<AppUser> passwordHasher = new PasswordHasher<AppUser>();
 
-            IdentityUser user = new IdentityUser()
+            AppUser user = new AppUser()
             {
                 Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                 UserName = "Admin",
