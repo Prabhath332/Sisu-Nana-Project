@@ -48,11 +48,11 @@ namespace web_project.Data
 
             //chatapplication
 
-            //base.OnModelCreating(builder);
-            //builder.Entity<Message>()
-            //.HasOne<AppUser>(a => a.Sender)
-            //.WithMany(d => d.Messages)
-            //.HasForeignKey(d => d.UserID);
+            base.OnModelCreating(builder);
+            builder.Entity<Message>()
+            .HasOne<AppUser>(a => a.Sender)
+            .WithMany(d => d.Messages)
+            .HasForeignKey(d => d.UserID);
 
             base.OnModelCreating(builder);
 
