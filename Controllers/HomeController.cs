@@ -38,7 +38,6 @@ namespace web_project.Controllers
             return View();
         }
 
-
         public async Task<IActionResult> Create(Message message)
         {
             if (ModelState.IsValid)
@@ -49,7 +48,7 @@ namespace web_project.Controllers
                 await _context.Messages.AddAsync(message);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-
+                //return Ok();
             }
             return Error();
         }
@@ -58,8 +57,6 @@ namespace web_project.Controllers
 
             return View();
         }
-
-
 
         public IActionResult HomePage()
         {
@@ -83,7 +80,5 @@ namespace web_project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-
-
 
 }
