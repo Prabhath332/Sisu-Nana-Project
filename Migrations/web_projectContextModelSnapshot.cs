@@ -249,15 +249,15 @@ namespace web_project.Migrations
                         {
                             Id = "72e3e2bd-b94a-4996-b684-07b9d88f9841",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "001eeca2-a70d-4bad-8658-03a7d26c7a11",
+                            ConcurrencyStamp = "314fbeb5-9f94-4d8b-8011-d42cbd573718",
                             Email = "admin@outlook.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@outlook.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKIc6BInFxphRzZ+z2AdvmdljbIR+9P9vcGthrXBn+spqp/XiwYncOm9z/36oHZFcA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMVLSRI8vtb99PXauNJZS63Fq7vOFO1/61aDy7tSVyuNFNt7WovwdE5ziYpd2YHe0g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8e092869-13c8-404c-8a8a-fdfb59cc1535",
+                            SecurityStamp = "5c0d72ce-2bab-4b76-865a-20c57599636d",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -382,7 +382,12 @@ namespace web_project.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("messageId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("messageId");
 
                     b.ToTable("Contact");
                 });
@@ -549,6 +554,13 @@ namespace web_project.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("web_project.Models.Contact", b =>
+                {
+                    b.HasOne("web_project.Models.Message", "message")
+                        .WithMany()
+                        .HasForeignKey("messageId");
                 });
 
             modelBuilder.Entity("web_project.Models.Message", b =>

@@ -384,13 +384,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ONEServices</title>
+    <title>Sisu-Nana Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -401,6 +401,11 @@
         body {
             font: 14px Montserrat, sans-serif;
             line-height: 1.8;
+            height: 100%;
+            margin: 0;
+            background: #7F7FD5;
+            background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+            background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
             /*color: #f5f6f7;*/
         }
 
@@ -452,6 +457,9 @@
     </style>
 </head>
 
+
+
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-transparent border-bottom box-shadow mb-3">
@@ -492,17 +500,19 @@
                                     <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Classes">Advertisements</a></li>
                                     <li class="nav-item"><a class="nav-link text-dark" asp-action="Classes" asp-controller="Classes">Join Class</a></li>
                                 }
-
-                            }
-                            else
-                            {
+                                <li><a class="nav-link text-dark"  asp-action="chat" asp-controller="Home">Chat Area</a></li>
+                                <li><a class="nav-link text-dark"  asp-action="Materials" asp-controller="Classes">Materials</a></li>
+                                
+                                   }
+                                   else
+                                   {
                                 <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Home" ali>Home</a></li>
                                 <li class="nav-item"><a class="nav-link text-dark" asp-action="CreateStudent" asp-controller="Users">Register Student</a></li>
                                 <li class="nav-item"><a class="nav-link text-dark" asp-action="CreateTeacher" asp-controller="Users">Register Teacher</a></li>
                                 <li class="nav-item"><a class="nav-link text-dark" asp-action="ViewLogIn" asp-controller="Home">LogIn</a></li>
-                            }
-                        }
-                    </ul>
+                                }
+                                }
+                            </ul>
                 </div>
             </div>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -512,9 +522,6 @@
                 </ul>
 
             </div>
-
-
-
 
         </nav>
     </header>
@@ -526,7 +533,7 @@
 
     @*<footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - ONEServices - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Sisu Nana - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
