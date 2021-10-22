@@ -38,6 +38,22 @@ namespace web_project.Controllers
             return View(messages);
         }
 
+
+
+        public async Task<IActionResult> chat()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.CurrentUserName = currentUser.UserName;
+            }
+            var messages = await _context.Messages.ToListAsync();
+            //ViewBag.data = messages;
+            return View(messages);
+        }
+
+
+
         public async Task<IActionResult> Create1(Message message)
         {
             if (ModelState.IsValid)
@@ -47,12 +63,13 @@ namespace web_project.Controllers
                 message.UserID = sender.Id;
                 await _context.Messages.AddAsync(message);
                 await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Chat", "Home");
                 //return Ok();
             }
             return Error();
         }
+
+
         public IActionResult Error()
         {
 
@@ -65,6 +82,11 @@ namespace web_project.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Indextest()
         {
             return View();
         }

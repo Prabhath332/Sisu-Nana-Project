@@ -12,7 +12,5 @@ namespace web_project.Models
         public string Email { get; set; }
         public string Message { get; set; }
         public string Mobile { get; set; }
-
-        public Message message { get; set; }
     }
 }

@@ -1,7 +1,4 @@
-﻿@*@model web_project.Models.Contact*@
-
-@model IEnumerable<web_project.Models.Message>
-
+﻿@model web_project.Models.Contact
 
 @{
     ViewData["Title"] = "Home Page";
@@ -79,6 +76,7 @@
                             <li><a href="#Materials">Materials</a></li>
                             <li><a href="#four">Massages</a></li>
                         }
+                        <li><a asp-action="chat" asp-controller="Home">Chat Area</a></li>
                         <li>
                             <a asp-action="Profile" asp-controller="Users">
                                 <i class='fas fa-user' style='font-size:15px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
@@ -102,7 +100,7 @@
 
     <!-- Banner -->
     <section id="banner" style="height:650px">
-        <h2>"සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය"</h2>
+        <h2>සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය</h2>
         <p> </p>
         <ul class="actions">
             <li><a asp-controller="Home" asp-action="Index" class="button special big">Class Advertisements</a></li>
@@ -186,88 +184,6 @@
     </section>
 
 
-    <!-- Student Chat -->
-    <section id="two" class="wrapper style2 special small">
-        <div class="feature">
-            <header class="major special">
-
-                <font face="Forte" size="25" color="Black">
-                    Students Chat
-                </font>
-                <p>Share your thoughts with each other</p>
-            </header>
-            <div class="container">
-
-
-                <div class="jumbotron bg-light">
-                    <h2 class="text-center text-primary">
-                        <i class="fab fa-facebook-messenger"></i>&nbsp; Public Talk
-                    </h2>
-
-                    <div class="row">
-                        <div class="col-md-12" id="chat">
-                            @if (Model != null)
-                            {
-                                @foreach (var message in Model.OrderBy(m => m.When))
-                                {
-                                    string containerClass, timePosition, textAlign, contcolor, offset;
-                                    if (userName == message.UserName)
-                                    {
-                                        containerClass = "container darker";
-                                        timePosition = "time-right text-light";
-                                        textAlign = "text-right text-white";
-                                        contcolor = "bg-primary";
-                                        offset = "col-md-6 offset-md-6";
-                                    }
-                                    else
-                                    {
-                                        containerClass = "container";
-                                        timePosition = "time-left";
-                                        textAlign = "text-left";
-                                        contcolor = "bg-light";
-                                        offset = "";
-                                    }
-                                    <div class="row">
-                                        <div class="@offset">
-                                            <div class="@containerClass @contcolor">
-
-                                                <p class="sender @textAlign">@message.UserName</p>
-                                                <p class="@textAlign">@message.Text</p>
-                                                <span class="@timePosition">@message.When.ToString("M/dd/yyyy hh:MM tt")</span>
-                                            </div>
-                                        </div>
-                                    </div>}}
-                        </div>
-                        <div class="col-md-12">
-                            <form asp-action="Create1"
-                                  data-ajax-begin="clearInputField" data-ajax-complete=""
-                                  data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
-                                  data-ajax="true" data-ajax-method="POST">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="form-group">
-                                    <input name="Text" class="form-control" id="messageText" required />
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Send" id="submitButton" class="btn btn-outline-primary btn-block" />
-                                </div>
-                                <input type="hidden" value="@userName" name="username" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <script>
-        const userName = "@ViewBag.CurrentUserName";
-                    </script>
-                }
-            </div>
-        </div>
-    </section>
-
-
-
-
     <!-- Populer Classes -->
 
     <section id="three" class="wrapper style2 special">
@@ -339,8 +255,41 @@
 
 
     <!-- Message -->
-
     @*<section id="four" class="wrapper style3 special">
+            <div class="container contact-form">
+                <form enctype="multipart/form-data" asp-controller="Contacts" asp-action="Create">
+                    <font face="Forte" size="25" color="White">
+                        Drop Us a Message
+                    </font>
+                    <br /><br />
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Your Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="Email" class="form-control" placeholder="Your Email *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="Mobile" class="form-control" placeholder="Your Mobile *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btnContact" value="Send Message" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" asp-for="Message" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>*@
+
+    <section id="four" class="wrapper style3 special">
         <div class="container contact-form">
             <form enctype="multipart/form-data" asp-controller="Contacts" asp-action="Create">
                 <font face="Forte" size="25" color="White">
@@ -372,7 +321,7 @@
                 </div>
             </form>
         </div>
-    </section>*@
+    </section>
 
 
     <!-- Footer -->
