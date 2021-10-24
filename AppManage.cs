@@ -14,6 +14,6 @@ namespace web_project
         public static int LoggedInType = 0;
         public static int LoggedInUserId = 0;
         public static string ErrorMsg = "";
-        public static string requestimagePath = @"C:\Users\Prabhath\Desktop\Final 2\Chat-Project\wwwroot\images";
+        public static string requestimagePath = @"C:\Users\Prabhath\Desktop\Final Last\Chat-Project\wwwroot\images";
     }
 }

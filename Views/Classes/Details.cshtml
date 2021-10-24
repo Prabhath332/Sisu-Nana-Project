@@ -44,28 +44,14 @@
         <!-- Banner -->
         <section id="three" class="wrapper style1">
             <div class="container">
-                <h1>Class Details</h1>
+                <h1><center> Class Details </center></h1>
 
                 <div>
-                    @{
-
-                     var role = this.User.Claims.ElementAt(3).Value;
-                     if (role == "Teacher")
-                        {
-                            <div class="form-group" style="padding-top:0em">
-                                <input style="width:110px ; " href="@Html.DisplayFor(model => model.Url)" type="submit" value="Start Class" class="btn btn-primary" />
-                            </div>
-                        }
-                     else if (role == "Admin")
-                        {
-                            <div>
-                            </div>
-                        }
-                    }
+                   
                     <hr />
                     <div class="row">
                         <div class="col-md-4">
-                            <dl class="row">
+                            <dl class="row h4">
                                 <dt class="col-sm-2">
                                     @Html.DisplayNameFor(model => model.Teacher)
                                 </dt>
@@ -96,6 +82,31 @@
                                 <dd class="col-sm-10">
                                     @Html.DisplayFor(model => model.Time)
                                 </dd>
+                                <dd class="col-sm-10">
+                                    @{
+
+                                        var role = this.User.Claims.ElementAt(3).Value;
+                                        if (role == "Teacher")
+                                        {
+                                            <div class="form-group" style="padding-top:0em">
+                                                <a href="@Html.DisplayFor(model => model.Url)"> <input style="width:110px ; " type="submit" value="Start Class" class="btn btn-primary" />  </a>
+                                            </div>
+                                        }
+                                        if (role == "Student")
+                                        {
+                                            <div class="form-group" style="padding-top:0em">
+                                                <a href="@Html.DisplayFor(model => model.Url)"> <input style="width:110px ; " type="submit" value="Join Class" class="btn btn-primary" />  </a>
+                                            </div>
+
+                                        }
+
+                                        else if (role == "Admin")
+                                        {
+                                            <div>
+                                            </div>
+                                        }
+                                    }
+                                </dd>
                             </dl>
                         </div>
                         <div class="col-md-5">
@@ -103,10 +114,10 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div><h3>
                     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
                     <a asp-action="Index">Back to List</a>
-                </div>
+               </h3> </div>
             </div>
         </section>
 

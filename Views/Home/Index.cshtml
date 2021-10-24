@@ -1,4 +1,4 @@
-﻿@model web_project.Models.Class
+﻿@*@model web_project.Models.Class*@
 
 
 @{
@@ -25,6 +25,7 @@
     <title>E-Learning system </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link rel="stylesheet" href="assets/css/main.css" />
 
     <link href="~/Home/css/bootstrap.min.css" rel="stylesheet" />
@@ -54,30 +55,31 @@
                         if (role == "Admin")
 
                         {
-                            <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
-                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>
+                            @*<li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>*@
+                            <li><a  asp-action="Index" asp-controller="Users">Users</a></li>
+                            @*<li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            <li><a asp-action="Students" asp-controller="Users">Students</a></li>*@
                             <li><a href="#Materials">Materials</a></li>
                             <li><a asp-action="Index" asp-controller="Contacts">Masseges</a></li>
                         }
                         else if (role == "Student")
                         {
                             <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
-                            <li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                            @*<li><a asp-action="Teachers" asp-controller="Users">Teachers</a></li>*@
                             <li><a href="#Materials">Materials</a></li>
                             <li><a href="#four">Masseges</a></li>
                         }
                         else if (role == "Teacher")
                         {
                             <li><a asp-action="Index" asp-controller="Classes">Advertisements</a></li>
-                            <li><a asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                            @*<li><a asp-action="Classes" asp-controller="Classes">Start Class</a></li>*@
                             <li><a href="#Materials">Materials</a></li>
                             <li><a href="#four">Massages</a></li>
                         }
                         <li><a asp-action="chat" asp-controller="Home">Chat Area</a></li>
                         <li>
                             <a asp-action="Profile" asp-controller="Users">
-                                <i class='fas fa-user' style='font-size:15px'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
+                                <i class='fas fa-user' style='font-size:15px' ></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@this.User.Identity.Name
                             </a>
                         </li>
                         <li><a asp-action="LogOut" asp-controller="Users">Logout</a></li>
@@ -101,7 +103,7 @@
         <h2>සිසු නැණ අධ්‍යාපනික වෙබ් අඩවිය</h2>
         <p> </p>
         <ul class="actions">
-            <li><a asp-controller="Home" asp-action="Index" class="button special big">Class Advertisements</a></li>
+            <li><a asp-action="Index" asp-controller="Classes" class="button special big">Class Advertisements</a></li>
         </ul>
     </section>
 
@@ -253,7 +255,7 @@
 
 
     <!-- Message -->
-    <!--<section id="four" class="wrapper style3 special">
+    <section id="four" class="wrapper style3 special">
             <div class="container contact-form">
                 <form enctype="multipart/form-data" asp-controller="Contacts" asp-action="Create">
                     <font face="Forte" size="25" color="White">
@@ -265,13 +267,13 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <input type="text" asp-for="Name" class="form-control" placeholder="Your Name *" value="" />
+                                <input type="text" @*asp-for="Name"*@ class="form-control" placeholder="Your Name *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="text" asp-for="Email" class="form-control" placeholder="Your Email *" value="" />
+                                <input type="text" @*asp-for="Email"*@ class="form-control" placeholder="Your Email *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="text" asp-for="Mobile" class="form-control" placeholder="Your Mobile *" value="" />
+                                <input type="text" @*asp-for="Mobile"*@ class="form-control" placeholder="Your Mobile *" value="" />
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btnContact" value="Send Message" />
@@ -279,13 +281,15 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" asp-for="Message" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                                <textarea class="form-control" @*asp-for="Message"*@ placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-        </section>-->
+        </section>
+
+
     <!-- Footer -->
     <footer class="page-footer font-small blue-grey lighten-5">
 
@@ -341,7 +345,7 @@
         </div>
         <div class="footer-copyright text-center text-black-50 py-3">
             © 2020 Copyright:
-            <a class="dark-grey-text" href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            <a class="dark-grey-text" href="https://SisuNanaWeb.com/"> SusuNanaWeb.com</a>
         </div>
 
 

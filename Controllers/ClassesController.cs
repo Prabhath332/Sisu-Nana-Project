@@ -38,10 +38,20 @@ namespace web_project.Controllers
         {  
             return View();
         }
+
+
         public async Task<IActionResult> Classes()
         {
+            var username = this.User.Identity.Name;
+           
+            //var role = this.User.Claims.ElementAt(3).Value;
+            //if (role == "Teacher")
+            //{
+            //    var web_projectContext = _context.Class.Where(a => a.Teacher == username);
+            //    return View(await web_projectContext.ToListAsync());
+            //}
             var web_projectContext = _context.Class;
-            return View(await web_projectContext.ToListAsync());
+                return View(await web_projectContext.ToListAsync());
         }
 
         // GET: Classes/Details/5
@@ -76,12 +86,12 @@ namespace web_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                RegistedStudent registedStudent = new RegistedStudent();
-                registedStudent.ClassId = @class.Id;               
-                var user = _context.User.Where(a => a.UserName == this.User.Identity.Name);
-                registedStudent.UserId = user.FirstOrDefault().Id;        
-                _context.Add(registedStudent);
-                await _context.SaveChangesAsync();
+              //  RegistedStudent registedStudent = new RegistedStudent();
+              //  registedStudent.ClassId = @class.Id;               
+              //  var user = _context.User.Where(a => a.UserName == this.User.Identity.Name);
+              //  registedStudent.UserId = user.FirstOrDefault().Id;        
+              //  _context.Add(registedStudent);
+              //  await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Classes));
             }
             return View(@class);

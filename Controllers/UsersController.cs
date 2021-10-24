@@ -128,14 +128,21 @@ namespace web_project.Controllers
 
 
         [Authorize]
-      
+
+        //public async Task<IActionResult> Profile()
+        //{
+        //    //int userId = AppManage.LoggedInUserId;
+        //    //var user = await _context.User.FindAsync();
+        //     return View(user);                       
+        //}
+        //[Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Profile()
         {
-            int userId = AppManage.LoggedInUserId;
-            var user = await _context.User.FindAsync();
-             return View(user);                       
+            var user = await _context.User.Where(a => a.UserName == this.User.Identity.Name).ToListAsync();
+            return View(user.FirstOrDefault());
         }
-        [Authorize(Roles = "Admin")]
+
 
         public async Task<IActionResult> DetailsA (int id)
         {
@@ -180,7 +187,8 @@ namespace web_project.Controllers
                         _context.Add(user);
                         await  _context.SaveChangesAsync();
                         await _signInManager.SignInAsync(AppUser, isPersistent: false);
-                         return LocalRedirect(returnUrl);
+                        //return LocalRedirect(returnUrl);
+                        return RedirectToAction("ViewLogIn", "Home");
 
                     }
                     foreach (var error in result.Errors)
@@ -202,7 +210,7 @@ namespace web_project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,ConfirmPassword,Email,Image,Nic,Grade,BankId,Branch,AccountNo,AccountName")] User user)
+        public async Task<IActionResult> CreateStudent([Bind("Id, UserName, Password,TelephoneNo,FirstName,LastName,UserTypeId,IsActive,ConfirmPassword,Email,Image,Nic,Grade, ")] User user)
         {
             string returnUrl = Url.Content("~/");
 
@@ -227,11 +235,12 @@ namespace web_project.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
-                    return View(user);
+                    return RedirectToAction("ViewLogIn", "Home");
+                    //return View(user);
                 }
                 catch (Exception ex)
                 {
-
+                    return RedirectToAction("ViewLogIn", "Home");
                 }
             }
             return View(  );

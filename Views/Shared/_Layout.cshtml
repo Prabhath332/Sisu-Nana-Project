@@ -233,22 +233,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @*<!DOCTYPE html>
     <html>
     <head>
@@ -379,6 +363,34 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -397,6 +409,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
+
     <style>
         body {
             font: 14px Montserrat, sans-serif;
@@ -406,35 +419,26 @@
             background: #7F7FD5;
             background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
             background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
-            /*color: #f5f6f7;*/
+            letter-spacing: 1px;
+            word-spacing: 5px;
+            border-radius: 0;
         }
 
         .navbar {
             margin-bottom: 0;
-            background-color: #f4511e;
+            font-style: normal;
             z-index: 9999;
             border: 0;
-            font-size: 14px !important;
+            font-size: 16px !important;
             line-height: 1.42857143 !important;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            word-spacing: 10px;
             border-radius: 0;
-            font-family: Montserrat, sans-serif;
+            font: Montserrat, sans-serif;
+            font: small-caps bold 12px/30px Georgia, serif;
         }
 
-        .bg-2 {
-            background-color: #474e5d; /* Dark Blue */
-            color: #ffffff;
-        }
 
-        .bg-3 {
-            background-color: #ffffff; /* White */
-            color: #555555;
-        }
-
-        .bg-4 {
-            background-color: #2f2f2f; /* Black Gray */
-            color: #fff;
-        }
 
         .container-fluid {
             padding-top: 70px;
@@ -442,6 +446,7 @@
         }
 
         .navbar li a, .navbar .navbar-brand {
+            
             color: #303030;
         }
 
@@ -462,16 +467,16 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-transparent border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm  border-bottom box-shadow mb-3 bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b><h2>සිසු නැණ</h2></b></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b><h2>සිසු නැණ</h2></b></a>*@ 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-
+                                   
                         @{
                             if (this.User.Identity.IsAuthenticated)
                             {
@@ -480,28 +485,28 @@
                                 if (role == "Admin")
 
                                 {
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Home" ali>Home</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Classes">Advertisements</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Teachers" asp-controller="Users">Teachers</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Users">Students</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Contacts">Masseges</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Home">Home</a></li>
+                                    @*<li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Classes">Advertisements</a></li>*@
+                                    @*<li class="nav-item"><a class="nav-link text-light" asp-action="Teachers" asp-controller="Users">Teachers</a></li>*@
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Users">Users</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Contacts">Masseges</a></li> 
 
                                 }
                                 else if (role == "Student")
                                 {
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Home" ali>Home</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Classes" asp-controller="Classes">Join Class</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Teachers" asp-controller="Users">Teachers</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Classes" asp-controller="Classes">Join_Class</a></li>
+                                    @*<li class="nav-item"><a class="nav-link text-light" asp-action="Teachers" asp-controller="Users">Teachers</a></li>*@
 
                                 }
                                 else if (role == "Teacher")
                                 {
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Home" ali>Home</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Index" asp-controller="Classes">Advertisements</a></li>
-                                    <li class="nav-item"><a class="nav-link text-dark" asp-action="Classes" asp-controller="Classes">Join Class</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Home" ali>Home</a></li>
+                                    <li class="nav-item"><a class="nav-link text-light" asp-action="Index" asp-controller="Classes">Advertisements</a></li>
+                                    @*<li class="nav-item"><a class="nav-link text-light" asp-action="Classes" asp-controller="Classes">Join_Class</a></li>*@
                                 }
-                                <li><a class="nav-link text-dark"  asp-action="chat" asp-controller="Home">Chat Area</a></li>
-                                <li><a class="nav-link text-dark"  asp-action="Materials" asp-controller="Classes">Materials</a></li>
+                                <li><a class="nav-link text-light"  asp-action="chat" asp-controller="Home">Chat_Area</a></li>
+                                <li><a class="nav-link text-light"  asp-action="Materials" asp-controller="Classes">Materials</a></li>
                                 
                                    }
                                    else
@@ -516,9 +521,9 @@
                 </div>
             </div>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item"><a class="nav-link text-dark"><span class="glyphicon glyphicon-user"></span> <i class='fas fa-user' style='font-size:15px'></i>&nbsp;@this.User.Identity.Name</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" asp-action="LogOut" asp-controller="Users"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item"><a class="nav-link text-light"  asp-action="Profile" asp-controller="Users">@*<span class="glyphicon glyphicon-user"></span>*@ <i class='fas fa-user' style='font-size:15px'></i>&nbsp;@this.User.Identity.Name</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" asp-action="LogOut" asp-controller="Users"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 </ul>
 
             </div>
@@ -542,9 +547,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-
-
 
 
 

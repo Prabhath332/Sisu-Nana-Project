@@ -2,6 +2,7 @@
     ViewData["Title"] = "Chat";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var userName = User.Identity.Name;
+    var count = Model.Where(m => m.UserName == userName).Count();
 }
 @model IEnumerable<web_project.Models.Message>
 
@@ -32,12 +33,14 @@
                     <div class="card-header msg_head">
                         <div class="d-flex bd-highlight">
                             <div class="img_cont">
-                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                                @*<img src="~/images/chat.jpg" />*@
+                                <img src="~/images/chat.jpg" class="rounded-circle user_img">
                                 <span class="online_icon"></span>
                             </div>
                             <div class="user_info">
+                                
                                 <span>Share Your Thoughts </span>
-                                <p>17 Messages</p>
+                                <p>@count Messages</p>
                             </div>
                         </div>
                     </div>
@@ -69,9 +72,6 @@
                                                 }
                                                 <div class="row">
                                                     <div class="@offset">
-                                                        <div class="img_cont_msg">
-                                                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
-                                                        </div>
                                                         <div class="msg_cotainer @contcolor">
                                                             <p class="sender @textAlign">@message.UserName</p>
                                                             <p class="@textAlign">@message.Text</p>
@@ -83,7 +83,8 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
+                    </div>
+
                     <div class="card-footer">
                         <div class="col-md-12">
                             <form asp-action="Create1"
@@ -101,19 +102,19 @@
                             </form>
                         </div>
                     </div>
-                    </div>
                 </div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <script>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <script>
                              const userName = "@ViewBag.CurrentUserName";
-                                </script>
-                            }
-                        </div>
-                    
-                </div>
-  
-        </body>
+                </script>
+            }
+        </div>
+
+    </div>
+
+</body>
 
 
 

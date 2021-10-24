@@ -39,20 +39,21 @@
                 <div class="col-md-3">
 
                     <form asp-action="AddToClass">
+                        <center>
                         <td style="width:30px">
                             <img height="225" onclick="javascript: window.open('a')" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) />
-
-
-                            @*<img height="225" onclick="javascript: window.open('a')" width="215" src=~/@Html.DisplayFor(modelItem => item.Image) />*@
                             <br />
-
-                            &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Subject)
-                            <br />
-                            &nbsp  &nbsp  &nbsp  &nbsp @Html.DisplayFor(modelItem => item.Date)
-                            <br />
-                            &nbsp  &nbsp  &nbsp  &nbsp  @Html.DisplayFor(modelItem => item.Time)
-                            <br />
-                            <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
+                            <center> <b>
+                                  <h5>Sublect: @Html.DisplayFor(modelItem => item.Subject)    </h5>
+                               
+                                 <h5>Date:  @Html.DisplayFor(modelItem => item.Date)  </h5> 
+                                
+                                 <h5>Time: @Html.DisplayFor(modelItem => item.Time) </h5> 
+                               
+                                <h5>Teacher:  @Html.DisplayFor(modelItem => item.Teacher)   </h5> 
+                               </b></center>
+                                <input type="hidden" value="@item.Id" asp-for="@Model.ElementAt(0).Id" />
+                                <br />
 
                             <div class="form-group" style="padding-top:0em">
                                 <input style="width:110px ; " type="submit" value="Register" class="btn btn-primary" />
@@ -76,16 +77,19 @@
                             }
 
                         </td>
+                            </center>
                     </form>
                     <form>
-                        <script src="https://checkout.stripe.com/checkout.js"
-                                class="stripe-button"
-                                data-key="pk_test_51JGJUuCfmMrdpWDAZcK1b6r64r4T9WDg5Qc6PIf1yGX0qTNjBxBc1V8J78gdnAykAcvpj4NmBTF9NIF8uq0w32wR00uTkIhnG1"
-                                data-name="Pay Your Donation"
-                                data-description="Your contribution is a great support to us"
-                                data-amount="{{ORDER_AMOUNT}}"
-                                data-currency="LKR">
-                        </script>
+                        <center>
+                            <script src="https://checkout.stripe.com/checkout.js"
+                                    class="stripe-button"
+                                    data-key="pk_test_51JGJUuCfmMrdpWDAZcK1b6r64r4T9WDg5Qc6PIf1yGX0qTNjBxBc1V8J78gdnAykAcvpj4NmBTF9NIF8uq0w32wR00uTkIhnG1"
+                                    data-name="Pay Your Donation"
+                                    data-description="Your contribution is a great support to us"
+                                    data-amount="{{ORDER_AMOUNT}}"
+                                    data-currency="LKR">
+                            </script>
+                        </center>
                     </form>
                 </div>
             }

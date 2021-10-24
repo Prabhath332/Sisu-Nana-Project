@@ -31,19 +31,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>*@
 
-
-    <style>
-        #grad1 {
-            height: 1000px;
-            background-color: red; /* For browsers that do not support gradients */
-            background-image: linear-gradient(white, black);
-        }
-    </style>
 </head>
 
 <body>
     <!-- Header nav bar -->
-    <div id="grad1">
+    <div>
         <div class="container">
 
             <h1>Contact Us Massges</h1>
@@ -80,7 +72,6 @@
             </div>
         </div>
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
             <a asp-action="Index">Back to List</a>
         </div>
         </div>
